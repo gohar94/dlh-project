@@ -1,0 +1,3 @@
+[submodule "workspace/final-project/example_designs/simple_pim/processing-in-memory-design"]
+	path = workspace/final-project/example_designs/simple_pim/processing-in-memory-design
+	url = git@github.com:Accelergy-Project/processing-in-memory-design.git
