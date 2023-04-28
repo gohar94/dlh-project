@@ -1,0 +1,51 @@
+mapping:
+  - target: scratchpad
+    type: datatype
+    keep:
+      - Weights
+    bypass:
+      - Inputs
+      - Outputs
+  - target: dummy_buffer
+    type: datatype
+    keep:
+      []
+    bypass:
+      - Weights
+      - Inputs
+      - Outputs
+  - target: shared_glb
+    type: datatype
+    keep:
+      - Inputs
+      - Outputs
+    bypass:
+      - Weights
+  - target: DRAM
+    type: datatype
+    keep:
+      - Inputs
+      - Outputs
+    bypass:
+      - Weights
+  - target: scratchpad
+    type: temporal
+    factors: C1 M1 R1 S1 N1 P1 Q1
+    permutation: CMRSNPQ
+  - target: dummy_buffer
+    type: spatial
+    factors: C3 M64 R5 S5 N1 P1 Q1
+    permutation: RSCMNPQ
+    split: 3
+  - target: dummy_buffer
+    type: temporal
+    factors: C1 M1 R1 S1 N1 P1 Q3
+    permutation: QCMRSNP
+  - target: shared_glb
+    type: temporal
+    factors: C32 M4 R1 S1 N1 P3 Q1
+    permutation: CMPRSNQ
+  - target: DRAM
+    type: temporal
+    factors: C1 M1 R1 S1 N1 P9 Q9
+    permutation: PQCMRSN

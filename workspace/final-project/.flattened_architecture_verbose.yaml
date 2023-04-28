@@ -1,0 +1,3789 @@
+architecture:
+  version: 0.3
+  local:
+  - name: system_arch.chip.PE[0..16383].scratchpad
+    class: memcell_storage
+    attributes:
+      cell_datawidth: 2
+      cell_technology: memristor
+      cmos_technology: 32nm
+      depth: 1
+      latency: 1ns
+      meshX: 128
+      meshY: 128
+      technology: 32nm
+      width: 16
+    primitive_components:
+    - name: storage
+      class: ReRAMcell_storage
+      attributes:
+        technology: memristor
+        latency: 1ns
+        cellwidth: 2
+      area_share: 1
+    actions:
+    - name: read
+      arguments: null
+      primitive_actions:
+      - name: storage
+        action: idle
+        arguments: null
+        action_share: 1
+  - name: system_arch.chip.PE[0..16383].mac
+    class: memcell_compute
+    attributes:
+      DAC_datawidth: 1
+      cell_datawidth: 2
+      cell_technology: memristor
+      cmos_technology: 32nm
+      compute_latency: 100ns
+      datawidth: 16
+      latency: 1ns
+      meshX: 128
+      meshY: 128
+      nCells: 8
+      nCycles: 16
+      technology: 32nm
+    primitive_components:
+    - name: cell[0..7]
+      class: ReRAMcell_compute
+      attributes:
+        technology: memristor
+        cellwidth: 2
+        latency: 100ns
+      area_share: 1
+    actions:
+    - name: compute
+      arguments: null
+      primitive_actions:
+      - name: cell[0..7]
+        action: compute
+        arguments: null
+        action_share: 16
+  - name: system_arch.chip.shared_glb
+    class: smartbuffer_SRAM
+    attributes:
+      block-size: 4
+      latency: 1ns
+      memory_depth: 16384
+      memory_width: 64
+      n_banks: 32
+      n_buffets: 1
+      n_rdwr_ports: 2
+      network_read: D2A_NoC
+      network_update: A2D_NoC
+      read_bandwidth: 16
+      technology: 32nm
+      word-bits: 16
+      write_bandwidth: 16
+    primitive_components:
+    - name: storage
+      class: SRAM
+      attributes:
+        technology: 32nm
+        width: 64
+        depth: 16384
+        n_rdwr_ports: 2
+        n_banks: 32
+        n_rd_ports: 0
+        n_wr_ports: 0
+        latency: 5ns
+      area_share: 1
+    - name: address_generators[0..1]
+      class: intadder
+      attributes:
+        technology: 32nm
+        width: 9.704060527839234
+        datawidth: 16
+        num_pipeline_stages: 1
+        latency: 5ns
+      area_share: 1
+    actions:
+    - name: write
+      arguments:
+        address_delta: 0
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 0
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 0
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 0
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 1
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 1
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 1
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 1
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 2
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 2
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 2
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 2
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 3
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 3
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 3
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 3
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 4
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 4
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 4
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 4
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 5
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 5
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 5
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 5
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 6
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 6
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 6
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 6
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 7
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 7
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 7
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 7
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 8
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 8
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 8
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 8
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 9
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 9
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 9
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 9
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 10
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 10
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 10
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 10
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 11
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 11
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 11
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 11
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 12
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 12
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 12
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 12
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 13
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 13
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 13
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 13
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 14
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 14
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 14
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 14
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 15
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 15
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 15
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 15
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 16
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 16
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 16
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 16
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 17
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 17
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 17
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 17
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 18
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 18
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 18
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 18
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 19
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 19
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 19
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 19
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 20
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 20
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 20
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 20
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 21
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 21
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 21
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 21
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 22
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 22
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 22
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 22
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 23
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 23
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 23
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 23
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 24
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 24
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 24
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 24
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 25
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 25
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 25
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 25
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 26
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 26
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 26
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 26
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 27
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 27
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 27
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 27
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 28
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 28
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 28
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 28
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 29
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 29
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 29
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 29
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 30
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 30
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 30
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 30
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 31
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 31
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 31
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 31
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 32
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 32
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: write
+      arguments:
+        address_delta: 32
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: write
+        arguments:
+          address_delta: 32
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[0]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[1]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 0
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 0
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 0
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 0
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 1
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 1
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 1
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 1
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 2
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 2
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 2
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 2
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 3
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 3
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 3
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 3
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 4
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 4
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 4
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 4
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 5
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 5
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 5
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 5
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 6
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 6
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 6
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 6
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 7
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 7
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 7
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 7
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 8
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 8
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 8
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 8
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 9
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 9
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 9
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 9
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 10
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 10
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 10
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 10
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 11
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 11
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 11
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 11
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 12
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 12
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 12
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 12
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 13
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 13
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 13
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 13
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 14
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 14
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 14
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 14
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 15
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 15
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 15
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 15
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 16
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 16
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 16
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 16
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 17
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 17
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 17
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 17
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 18
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 18
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 18
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 18
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 19
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 19
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 19
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 19
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 20
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 20
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 20
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 20
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 21
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 21
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 21
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 21
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 22
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 22
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 22
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 22
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 23
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 23
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 23
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 23
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 24
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 24
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 24
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 24
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 25
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 25
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 25
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 25
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 26
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 26
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 26
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 26
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 27
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 27
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 27
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 27
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 28
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 28
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 28
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 28
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 29
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 29
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 29
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 29
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 30
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 30
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 30
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 30
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 31
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 31
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 31
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 31
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 32
+        data_delta: 0
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 32
+          data_delta: 0
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: read
+      arguments:
+        address_delta: 32
+        data_delta: 1
+      primitive_actions:
+      - name: storage
+        action: read
+        arguments:
+          address_delta: 32
+          data_delta: 1
+        action_share: 1
+      - name: address_generators[1]
+        action: add
+        arguments: null
+        action_share: 1
+      - name: address_generators[0]
+        action: idle
+        arguments: null
+        action_share: 1
+    - name: idle
+      arguments: null
+      primitive_actions:
+      - name: storage
+        action: idle
+        arguments: null
+        action_share: 1
+      - name: address_generators[0..1]
+        action: idle
+        arguments: null
+        action_share: 1
+  - name: system_arch.chip.dummy_buffer
+    class: dummy_storage
+    attributes:
+      depth: 0
+      latency: 1ns
+      network_drain: A2D_NoC
+      network_fill: D2A_NoC
+      technology: 32nm
+      width: 16
+    primitive_components:
+    - name: storage
+      class: SRAM
+      attributes:
+        depth: 0
+        width: 0
+        datawidth: 0
+        n_rdwr_ports: 0
+        technology: 65nm
+        n_rd_ports: 0
+        n_wr_ports: 0
+        n_banks: 1
+        latency: 5ns
+      area_share: 1
+    actions:
+    - name: access
+      arguments: null
+      primitive_actions:
+      - name: storage
+        action: idle
+        arguments: null
+        action_share: 1
+  - name: system_arch.chip.D2A_NoC
+    class: DAC_SimpleMulticast
+    attributes:
+      DAC_datawidth: 1
+      action_name: transfer
+      cell_datawidth: 2
+      datawidth: 16
+      latency: 1ns
+      multicast_factor_argument: num_destinations
+      n_DAC_cycles: 16
+      n_PE_cols: 128
+      n_PE_rows: 128
+      num_converts: 16
+      per_datatype_ERT: true
+      technology: 32nm
+    primitive_components:
+    - name: D2A_converter.DAC[0..1023]
+      class: DAC
+      attributes:
+        technology: 32nm
+        latency: 1ns
+        datawidth: 1
+        type: R2R
+      area_share: 1
+    actions:
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 1
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 2
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 3
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 4
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 5
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 6
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 7
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 8
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 9
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 10
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 11
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 12
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 13
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 14
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 15
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 16
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 17
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 18
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 19
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 20
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 21
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 22
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 23
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 24
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 25
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 26
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 27
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 28
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 29
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 30
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 31
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 32
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 33
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 34
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 35
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 36
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 37
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 38
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 39
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 40
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 41
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 42
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 43
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 44
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 45
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 46
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 47
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 48
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 49
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 50
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 51
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 52
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 53
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 54
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 55
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 56
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 57
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 58
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 59
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 60
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 61
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 62
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 63
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 64
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 65
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 66
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 67
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 68
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 69
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 70
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 71
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 72
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 73
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 74
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 75
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 76
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 77
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 78
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 79
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 80
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 81
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 82
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 83
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 84
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 85
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 86
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 87
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 88
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 89
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 90
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 91
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 92
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 93
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 94
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 95
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 96
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 97
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 98
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 99
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 100
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 101
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 102
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 103
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 104
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 105
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 106
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 107
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 108
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 109
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 110
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 111
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 112
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 113
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 114
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 115
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 116
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 117
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 118
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 119
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 120
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 121
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 122
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 123
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 124
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 125
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 126
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 127
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+    - name: transfer_Inputs
+      arguments:
+        num_destinations: 128
+      primitive_actions:
+      - name: D2A_converter.DAC[0..7]
+        action: convert
+        arguments: null
+        action_share: 16
+  - name: system_arch.chip.A2D_NoC
+    class: ADC_SimpleMulticast
+    attributes:
+      A2D_convert_width: 16
+      ADC_datawidth: 8
+      action_name: transfer
+      cell_datawidth: 2
+      datawidth: 16
+      latency: 1ns
+      multicast_factor_argument: num_destinations
+      n_DAC_cycles: 16
+      n_PE_cols: 128
+      n_PE_rows: 128
+      per_datatype_ERT: true
+      technology: 32nm
+    primitive_components:
+    - name: A2D_converter.SH[0..63]
+      class: sample_and_hold
+      attributes:
+        technology: 32nm
+        latency: 1ns
+        datawidth: 8
+      area_share: 1
+    - name: A2D_converter.ADC
+      class: ADC
+      attributes:
+        technology: 32nm
+        latency: 1ns
+        type: SAR
+        datawidth: 8
+      area_share: 1
+    - name: digital_accumulator.S_A
+      class: shift_and_add
+      attributes:
+        technology: 32nm
+        latency: 1ns
+        datawidth: 16
+      area_share: 1
+    - name: digital_accumulator.outputBuffer
+      class: SRAM
+      attributes:
+        technology: 32nm
+        latency: 1ns
+        width: 16
+        depth: 128
+        datawidth: 16
+        n_rd_ports: 0
+        n_wr_ports: 0
+        n_rdwr_ports: 1
+        n_banks: 1
+      area_share: 1
+    actions:
+    - name: transfer_Outputs
+      arguments:
+        num_destinations: 1
+      primitive_actions:
+      - name: A2D_converter.SH[0..7]
+        action: sample_and_hold
+        arguments: null
+        action_share: 16
+      - name: A2D_converter.ADC
+        action: convert
+        arguments: null
+        action_share: 128
+      - name: digital_accumulator.S_A
+        action: shift_and_add
+        arguments: null
+        action_share: 128
+      - name: digital_accumulator.outputBuffer
+        action: read
+        arguments:
+          address_delta: 1
+          data_delta: 1
+        action_share: 14
+      - name: digital_accumulator.outputBuffer
+        action: write
+        arguments:
+          address_delta: 1
+          data_delta: 1
+        action_share: 14
+  - name: system_arch.DRAM
+    class: DRAM
+    actions:
+    - name: read
+      arguments: null
+    - name: write
+      arguments: null
+    - name: idle
+      arguments: null
