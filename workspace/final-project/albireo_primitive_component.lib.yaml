@@ -1,0 +1,20 @@
+version: 0.3
+classes:
+  - name: MRR
+    attributes:
+      technology: 7nm
+      latency: 1ns # TODO confirm this
+      datawidth: 16
+      DAC_datawidth: 1
+    actions:
+      - name: compute
+      - name: idle
+  - name: MZM
+    attributes:
+      technology: 7nm
+      latency: 1ns # TODO confirm this
+      datawidth: 16
+      DAC_datawidth: 1
+    actions:
+      - name: compute
+      - name: idle
