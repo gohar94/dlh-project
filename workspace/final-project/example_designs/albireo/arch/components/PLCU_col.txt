@@ -1,0 +1,11 @@
+compound_components:
+  version: 0.3
+  classes:
+    - name: PLCU_col
+      attributes:
+        nRows: 3
+      subcomponents:
+        - name: plcu[0..nRows-1]
+          class: PLCU
+          attributes:
+            meshX: 1

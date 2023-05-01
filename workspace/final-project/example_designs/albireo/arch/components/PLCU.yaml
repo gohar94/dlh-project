@@ -1,0 +1,38 @@
+compound_components:
+  version: 0.3
+  classes:
+    - name: PLCU
+      attributes:
+        technology: 7nm
+        datawidth: 8 # TODO confirm; the MRR can do k^2 = 0.03 with 7 bit, we are simplifying to keep nice round numbers :)
+        PLCU_datawidth: 1 # TODO confirm; compute 1 bit input at a time
+        latency: 0.2ns # TODO confirm; this is based on 5GHz
+        Nm: 9
+        Nd: 5
+        nMRRs: 2 * Nm * Nd
+        nMZMs: Nm
+        nCycles: datawidth/PLCU_datawidth
+      subcomponents:
+        - name: mrrs[0..nMRRs-1]
+          class: MRR
+          attributes:
+            technology: technology
+            mrrwidth: PLCU_datawidth
+            latency: latency
+        - name: mzms[0..nMZMs-1]
+          class: MZM
+          attributes:
+            technology: technology
+            mzmwidth: PLCU_datawidth
+            latency: latency
+      actions:
+        - name: compute
+          subcomponents:
+            - name: mrrs[0..nMRRs-1]
+              actions:
+                - name: compute
+                  action_share: nCycles # TODO confirm; compute 1 bit input at a time
+            - name: mzms[0..nMZMs-1]
+              actions:
+                - name: compute
+                  action_share: nCycles # TODO confirm; compute 1 bit input at a time

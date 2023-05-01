@@ -1,0 +1,50 @@
+compound_components:
+  version: 0.3
+  classes:
+    - name: DAC_SimpleMulticast
+      attributes:
+        technology: 7nm
+        latency: 1ns
+        datawidth: 8
+        DAC_datawidth: 1
+        num_converts: datawidth/DAC_datawidth
+      subcomponents:
+        - name: D2A_converter
+          class: D2A_conversion_system
+          attributes:
+            technology: technology
+            latency: latency
+            datawidth: datawidth
+            DAC_datawidth: DAC_datawidth
+            cell_datawidth: cell_datawidth
+        - name: MRR_grid
+          class: MRR
+          attributes:
+            technology: technology
+            latency: latency
+            datawidth: datawidth
+            DAC_datawidth: DAC_datawidth
+        - name: MZM_grid # TODO unclear if this is needed; but the paper seems to suggest this
+          class: MZM
+          attributes:
+            technology: technology
+            latency: latency
+            datawidth: datawidth
+            DAC_datawidth: DAC_datawidth
+      actions:
+        - name: transfer_Inputs
+          arguments:
+            num_destinations: 1..n_PLCG_cols
+          subcomponents:
+            - name: D2A_converter
+              actions:
+                - name: convert
+                  action_share: n_PLCG_cols
+            - name: MRR_grid
+              actions:
+                - name: compute
+                  action_share: n_PLCG_cols
+            - name: MZM_grid
+              actions:
+                - name: compute
+                  action_share: n_PLCG_cols

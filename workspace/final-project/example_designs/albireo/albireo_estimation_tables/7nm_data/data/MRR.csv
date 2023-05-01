@@ -1,0 +1,3 @@
+technology,datawidth,action,energy,area,comment
+7nm,1,compute,0,400,(TODO compute energy) in pJ; (20x20) area in um^2
+7nm,1,idle,0,400,energy in pJ; (20x20) area in um^2
