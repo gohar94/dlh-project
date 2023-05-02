@@ -3,25 +3,25 @@ classes:
   - name: MRR
     attributes:
       technology: 7nm
-      latency: 0.547ps # This is from the PIXEL paper.
+      latency: 1ns
       datawidth: 8
-      DAC_datawidth: 1
+      DAC_datawidth: 8
     actions:
       - name: compute
       - name: idle
   - name: MZM
     attributes:
       technology: 7nm
-      latency: 0.736ns # This is from the PIXEL paper (for accumulation of 4 bits).
+      latency: 1ns
       datawidth: 8
-      DAC_datawidth: 1
+      DAC_datawidth: 8
     actions:
       - name: compute
       - name: idle
   - name: PD
     attributes:
       technology: 7nm
-      latency: 1ns # TODO: Unclear
+      latency: 1ns
       datawidth: 8
     actions:
       - name: compute

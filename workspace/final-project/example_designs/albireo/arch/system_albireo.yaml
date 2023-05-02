@@ -11,7 +11,7 @@ architecture:
           attributes:
             technology: 32nm
             width: 64
-            datawidth: 8
+            datawidth: 16
             block-size: 4
       subtree:
         - name: chip
@@ -19,6 +19,7 @@ architecture:
             - name: shared_glb
               class: smartbuffer_SRAM
               attributes:
+                technology: 7nm
                 memory_depth: 262144 # 256KB
                 memory_width: 64
                 n_banks: 32
@@ -34,7 +35,7 @@ architecture:
               attributes:
                 technology: 32nm
                 depth: 0
-                width: 8
+                width: 16
                 network_fill: D2A_NoC
                 network_drain: A2D_NoC
             - name: D2A_NoC
@@ -45,12 +46,13 @@ architecture:
                 datawidth: 8
                 DAC_datawidth: 8
                 n_DAC_cycles: datawidth/DAC_datawidth
-                n_PLCG_cols: 3
-                n_PLCG_rows: 3
+                n_PLCG_cols: 4
+                n_PLCG_rows: 4
                 action_name: transfer
                 per_datatype_ERT: True
-                multicast_factor_argument: num_destinations
-            - name: plcg[0..9]
+                multicast_factor_argument: 2
+                # multicast_factor_argument: num_destinations
+            - name: plcg[0..8] # TODO use nPLCG - 1 or something
               class: PLCG
               attributes:
                 datawidth: datawidth
