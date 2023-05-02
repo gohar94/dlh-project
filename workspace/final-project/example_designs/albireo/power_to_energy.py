@@ -48,6 +48,14 @@ weight_caches_power_percent = 0.0013
 num_mrrs                    = 2 * 9 * 5
 num_mzms                    = 9
 num_weight_caches           = 9
+TIA_power_percent           = 0.0062
+ADC_power_percent           = 0.058
+num_TIA                     = 5
+num_ADC                     = 1
+
+
+
+
 
 print("CONSTANTS:")
 print(f"{'alexnet_macs':<25} {prefix(alexnet_macs):>11}")
@@ -59,6 +67,10 @@ print(f"{'weight_caches_power_percent':<25} {weight_caches_power_percent * 100:>
 print(f"{'num_mrrs':<25} {num_mrrs:>11}")
 print(f"{'num_mzms':<25} {num_mzms:>11}")
 print(f"{'num_weight_caches':<25} {num_weight_caches:>11}")
+print(f"{'TIA_power_percent':<25} {TIA_power_percent * 100:>10}%")
+print(f"{'ADC_power_percent':<25} {ADC_power_percent * 100:>10}%")
+print(f"{'num_TIA':<25} {num_TIA:>11}")
+print(f"{'num_ADC':<25} {num_ADC:>11}")
 
 
 # Derived values
@@ -70,6 +82,13 @@ energy_per_mzm           = energy_all_mzms / num_mzms
 energy_all_weight_caches = energy_per_mac * weight_caches_power_percent
 energy_per_weight_cache  = energy_all_weight_caches / num_weight_caches
 total_power_watts        = total_energy_joules / total_latency_seconds
+energy_all_TIAs          = energy_per_mac * TIA_power_percent
+energy_per_TIA           = energy_all_TIAs / num_TIA
+energy_all_ADC           = energy_per_mac * ADC_power_percent
+energy_per_mzm           = energy_all_ADC / num_ADC
+
+
+
 
 print("\nDERIVED:")
 print(f"{'energy_per_mac':<25} {prefix(energy_per_mac):>10}J")
@@ -79,4 +98,11 @@ print(f"{'energy_all_mzms':<25} {prefix(energy_all_mzms):>10}J")
 print(f"{'energy_all_weight_caches':<25} {prefix(energy_all_weight_caches):>10}J")
 print(f"{'energy_per_mzm':<25} {prefix(energy_per_mzm):>10}J")
 print(f"{'energy_per_weight_cache':<25} {prefix(energy_per_weight_cache):>10}J")
+print(f"{'energy_all_TIAs':<25} {prefix(energy_all_TIAs):>10}J")
+print(f"{'energy_per_TIAs':<25} {prefix(energy_per_TIA):>10}J")
+print(f"{'energy_all_ADC':<25} {prefix(energy_all_ADC):>10}J")
+print(f"{'energy_per_ADC':<25} {prefix(energy_per_mzm):>10}J")
 print(f"{'total_power_watts':<25} {prefix(total_power_watts):>10}W")
+
+
+
