@@ -3,20 +3,15 @@ compound_components:
   classes:
     - name: D2A_conversion_system
       attributes:
-        technology: 7nm
+        technology: 32nm
         latency: 1ns
         datawidth: 8
-        meshX: 3
-        meshY: 3
-        DAC_datawidth: 1
-        cell_datawidth: 2
-        nCells: datawidth/cell_datawidth
-        nArrays: nCells
+        DAC_datawidth: 8
+        nDACs: 1
         nCycles: datawidth/DAC_datawidth
-        total_DACs: nArrays * meshY
         DAC_converts_per_psum: nCycles
       subcomponents:
-        - name: DAC[0..9]
+        - name: DAC
           class: DAC
           attributes:
             technology: technology
@@ -25,7 +20,7 @@ compound_components:
       actions:
         - name: convert
           subcomponents:
-            - name: DAC[0..4]
+            - name: DAC
               actions:
                 - name: convert
                   action_share: nCycles

@@ -12,11 +12,11 @@ compound_components:
         - name: weight_cache
           class: smartbuffer_RF
           attributes:
-            memory_depth: 16384
+            memory_depth: 16384 # 16KB
             memory_width: 64
             n_banks: 32
             block-size: 4
-            word-bits: 16
+            word-bits: 8
             read_bandwidth: 16
             write_bandwidth: 16
         - name: plcu[0..nPLCUs-1]

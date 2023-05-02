@@ -9,6 +9,7 @@ architecture:
         - name: DRAM
           class: DRAM
           attributes:
+            technology: 32nm
             width: 64
             datawidth: 8
             block-size: 4
@@ -31,6 +32,7 @@ architecture:
             - name: dummy_buffer
               class: dummy_storage
               attributes:
+                technology: 32nm
                 depth: 0
                 width: 8
                 network_fill: D2A_NoC
@@ -39,6 +41,7 @@ architecture:
               class: SimpleMulticast
               subclass: DAC_SimpleMulticast
               attributes:
+                technology: 32nm
                 datawidth: 8
                 DAC_datawidth: 8
                 n_DAC_cycles: datawidth/DAC_datawidth
