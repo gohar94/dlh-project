@@ -1,7 +1,5 @@
 technology,datawidth,width,depth,latency,action,address_delta,data_delta,energy,area,comment
-32nm,16,16,1152,1ns,read,1,1,1.23E+00,2870,energy in pJ;  area in um^2
-32nm,16,16,1152,1ns,write,1,1,1.23E+00,2870,
-32nm,16,16,1024,1ns,read,1,1,1.03E+00,2100,
-32nm,16,16,1024,1ns,write,1,1,1.03E+00,2100,
-32nm,16,16,128,1ns,read,1,1,1.92E-01,770,
-32nm,16,16,128,1ns,write,1,1,1.92E-01,770,
+7nm,8,8,262144,1ns,read,1,1,1.23E+00,200600,energy in pJ;  area in um^2 (based on 256 kB of storage and a footprint of 0.0.59×0.34 mm^2)
+7nm,8,8,262144,1ns,write,1,1,1.23E+00,200600,based on 256 kB of storage and a footprint of 0.0.59×0.34 mm^2)
+7nm,8,8,16384,1ns,read,1,1,0.000502,7820,based on 16 kB of storage and a footprint of 0.092×0.085 mm^2
+7nm,8,8,16384,1ns,write,1,1,0.000502,7820,based on 16 kB of storage and a footprint of 0.092×0.085 mm^2

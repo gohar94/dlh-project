@@ -1,28 +1,28 @@
 architecture:
   version: 0.3
-  subtree:                           # "subtree" contains abstract hierarchies
-    - name: system_arch              # name of the design
-      attributes:                    # shared attributes that will propagate down all lower levels
+  subtree:
+    - name: system_arch
+      attributes:
         technology: 7nm
         latency: 1ns
       local:
-        - name: DRAM                 # offchip DRAM is the source of all datatypes
-          class: DRAM                # assume DRAM is large enough to store all the data, so no depth specification needed
+        - name: DRAM
+          class: DRAM
           attributes:
-            width: 64                 # width in bits
-            datawidth: 8              # datawidth in bits
-            block-size: 8
+            width: 64
+            datawidth: 8
+            block-size: 4
       subtree:
-        - name: chip                 # all components below this level are on-chip components
+        - name: chip
           local:
             - name: shared_glb
               class: smartbuffer_SRAM
               attributes:
-                memory_depth: 16384
+                memory_depth: 262144 # 256KB
                 memory_width: 64
                 n_banks: 32
-                block-size: 8
-                word-bits: 16
+                block-size: 4
+                word-bits: 8
                 read_bandwidth: 16
                 write_bandwidth: 16
                 n_rdwr_ports: 2
@@ -31,57 +31,24 @@ architecture:
             - name: dummy_buffer
               class: dummy_storage
               attributes:
-                depth: 0   # will result in zero area/energy for accelergy
-                width: 8   # timeloop needs a width even if the memory is not storing anything
+                depth: 0
+                width: 8
                 network_fill: D2A_NoC
                 network_drain: A2D_NoC
             - name: D2A_NoC
-              class: SimpleMulticast         # timeloop class
-              subclass: DAC_SimpleMulticast  # accelergy class
+              class: SimpleMulticast
+              subclass: DAC_SimpleMulticast
               attributes:
                 datawidth: 8
-                DAC_datawidth: 1  # DAC only converts one bit per cycle
-                n_DAC_cycles: 16  # number of cycles needed for a DAC to convert a datawidth-bit data
+                DAC_datawidth: 8
+                n_DAC_cycles: datawidth/DAC_datawidth
                 n_PLCG_cols: 3
                 n_PLCG_rows: 3
                 action_name: transfer
                 per_datatype_ERT: True
                 multicast_factor_argument: num_destinations
-            - name: A2D_NoC
-              class: SimpleMulticast         # timeloop class
-              subclass: ADC_SimpleMulticast  # accelergy class
+            - name: plcg[0..9]
+              class: PLCG
               attributes:
-                datawidth: 8
-                ADC_datawidth: 8
-                n_DAC_cycles: 8    # number of cycles needed for a DAC to convert a datawidth-bit data = datawidth/DAC_datawidth
-                n_PLCG_cols: 3
-                n_PLCG_rows: 3
-                action_name: transfer
-                per_datatype_ERT: True
-                multicast_factor_argument: num_destinations
-          subtree:
-            - name: PLCG[0..9]
-              local:                 # "local" contains physical instantiations
-                - name: weight_cache # weight cache in PLCG
-                  class: smartbuffer_RF # TODO confirm; this is inspired by the Eyeriss
-                  attributes:
-                    memory_depth: 3
-                    memory_width: 16
-                    block-size: 1
-                    word-bits: 16
-                    meshX: 3
-                    read_bandwidth: 2
-                    write_bandwidth: 2
-                - name: mac
-                  class: PLCU # TODO column at some point
-                  attributes:
-                    meshX: 3
-                - name: add_act
-                  class: aggregator
-                  attributes:
-                - name: awg
-                  class: awg_demux
-                  attributes:
-                - name: star_coupler
-                  class: star_coupler
-                  attributes:
+                datawidth: datawidth
+            # TODO Add aggregator here

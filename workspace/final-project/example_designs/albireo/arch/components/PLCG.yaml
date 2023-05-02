@@ -1,0 +1,36 @@
+compound_components:
+  version: 0.3
+  classes:
+    - name: PLCG
+      attributes:
+        technology: 7nm
+        datawidth: 8
+        PLCG_datawidth: 8
+        nCycles: datawidth/PLCG_datawidth
+        nPLCUs: 3
+      subcomponents:
+        - name: weight_cache
+          class: smartbuffer_RF
+          attributes:
+            memory_depth: 16384
+            memory_width: 64
+            n_banks: 32
+            block-size: 4
+            word-bits: 16
+            read_bandwidth: 16
+            write_bandwidth: 16
+        - name: plcu[0..nPLCUs-1]
+          class: PLCU
+          attributes:
+            technology: 7nm
+            datawidth: 8
+            PLCU_datawidth: 8
+            latency: 1ns
+            nCycles: datawidth/PLCU_datawidth
+      actions:
+        - name: compute
+          subcomponents:
+            - name: plcu[0..nPLCUs-1]
+              actions:
+                - name: compute
+                  action_share: nCycles

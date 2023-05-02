@@ -5,18 +5,17 @@ compound_components:
       attributes:
         technology: 32nm
         latency: 1ns
-        datawidth: 16
+        datawidth: 8
         meshX: 128
         meshY: 128
         cell_datawidth: 2
-        n_DAC_cycles: 16
-        # derived parameters (automatically derived, but can be overridden from high-level)
+        n_DAC_cycles: 8
         nCells: datawidth/cell_datawidth
         nArrays: nCells
-        total_S_As: nArrays  # each array share a shift and add
+        total_S_As: nArrays
         S_A_datawidth: datawidth
-        S_As_per_psum: nCells * n_DAC_cycles # temporal S_A computations
-        buffer_per_psum: n_DAC_cycles -2 # the first and last partial sums are not written into into this buffer
+        S_As_per_psum: nCells * n_DAC_cycles
+        buffer_per_psum: n_DAC_cycles - 2
       subcomponents:
         - name: S_A
           class: shift_and_add
@@ -35,7 +34,7 @@ compound_components:
       actions:
         - name: accumulate
           subcomponents:
-            - name: S_A # assume this S_A is fast enough to do the computations needed in one cycle
+            - name: S_A
               actions:
                 - name: shift_and_add
                   action_share: S_As_per_psum

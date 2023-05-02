@@ -4,9 +4,9 @@ compound_components:
     - name: PLCU
       attributes:
         technology: 7nm
-        datawidth: 8 # The MRR can do k^2 = 0.03 with 7 bit, we are simplifying to keep nice round numbers :)
-        PLCU_datawidth: 8 # for simplification, assume architecture is not bit serial. main reason is there is no one-to-one correlation between wavelengths and bits. if the architecture processes 10 wavelengths at once (for example), it is unclear how many bits are processed at once. assume a constant PLCU_datawidth of 8.
-        latency: 1ns # keep the default as in PIM. 
+        datawidth: 8
+        PLCU_datawidth: 8
+        latency: 1ns
         Nm: 9
         Nd: 5
         nMRRs: 2 * Nm * Nd
@@ -25,6 +25,15 @@ compound_components:
             technology: technology
             mzmwidth: PLCU_datawidth
             latency: latency
+        - name: A2D_NoC
+          class: ADC_SimpleMulticast
+          attributes:
+            datawidth: datawidth
+            ADC_datawidth: PLCU_datawidth
+            n_DAC_cycles: datawidth/ADC_datawidth
+            action_name: transfer
+            per_datatype_ERT: True
+            multicast_factor_argument: num_destinations
       actions:
         - name: compute
           subcomponents:
