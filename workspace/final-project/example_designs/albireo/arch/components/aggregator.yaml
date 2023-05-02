@@ -1,0 +1,44 @@
+compound_components:
+    version: 0.3
+    classes:
+      - name: aggregator
+        attributes:
+          technology: 7nm
+          datawidth: 8
+          aggregator_datawidth: 8
+          latency: 1ns
+          Nm: 9
+          Nd: 5
+          Nu: 3
+          nPDs: Nd * Nu
+          nTIAs: Nd
+          nCycles: datawidth/aggregator_datawidth # TODO: not sure if this is correct
+      - subcomponents:
+        - name: pds[0..nPDs]
+          class: PD
+          attributes:
+            technology: technology
+            pdwidth: aggregator_datawidth
+            latency: latency
+        - name: tias[0..nTIAs]
+          class: TIA
+          attributes:
+            technology: technology
+            tiawidth: accelerator_datawidth
+            latency: latency
+        - name: A2D_NoC # TODO: remember to remove the pe_cols and pe_rows
+          class: SimplemMulticast
+          subclass: ADC_SimpleMulticast
+          attributes:
+            datawidth: 8
+            ADC_datawidth: 8
+            cell_datawidth: 2
+            n_DAC_cycles: 8
+            action_name: transfer
+            per_datatype_ERT: true
+            multicast_factor_argument: num_destinations
+        - name: adders[0..Nd]
+          class: intadder
+          attributes:
+            technology: 65nm
+            datawidth: 8

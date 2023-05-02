@@ -21,7 +21,7 @@ architecture:
                 memory_depth: 16384
                 memory_width: 64
                 n_banks: 32
-                block-size: 8 # TODO confirm; this is based on block-size above
+                block-size: 8
                 word-bits: 16
                 read_bandwidth: 16
                 write_bandwidth: 16
@@ -39,7 +39,7 @@ architecture:
               class: SimpleMulticast         # timeloop class
               subclass: DAC_SimpleMulticast  # accelergy class
               attributes:
-                datawidth: 16
+                datawidth: 8
                 DAC_datawidth: 1  # DAC only converts one bit per cycle
                 n_DAC_cycles: 16  # number of cycles needed for a DAC to convert a datawidth-bit data
                 n_PLCG_cols: 3
@@ -51,10 +51,9 @@ architecture:
               class: SimpleMulticast         # timeloop class
               subclass: ADC_SimpleMulticast  # accelergy class
               attributes:
-                datawidth: 16
+                datawidth: 8
                 ADC_datawidth: 8
-                cell_datawidth: 2
-                n_DAC_cycles: 16    # number of cycles needed for a DAC to convert a datawidth-bit data = datawidth/DAC_datawidth
+                n_DAC_cycles: 8    # number of cycles needed for a DAC to convert a datawidth-bit data = datawidth/DAC_datawidth
                 n_PLCG_cols: 3
                 n_PLCG_rows: 3
                 action_name: transfer
@@ -77,7 +76,12 @@ architecture:
                   class: PLCU # TODO column at some point
                   attributes:
                     meshX: 3
-                # TODO missing pieces:
-                # - aggregation
-                # - star coupler
-                # - AWG
+                - name: add_act
+                  class: aggregator
+                  attributes:
+                - name: awg
+                  class: awg_demux
+                  attributes:
+                - name: star_coupler
+                  class: star_coupler
+                  attributes:

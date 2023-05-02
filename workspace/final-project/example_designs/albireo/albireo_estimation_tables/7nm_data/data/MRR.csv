@@ -1,3 +1,3 @@
 technology,datawidth,action,energy,area,comment
-7nm,1,compute,0,400,(TODO compute energy) in pJ; (20x20) area in um^2
+7nm,1,compute,15.5,400,found the 0.042pJ/bit number from PAM-4 paper, which is a transmitter used to make the Albireo MRR. Albireo calculates energies across 4 bits at a time, so dividing 3.1mW / 4 for the MRR yields MRR energies per bit. area is 20 * 20 um = 400 um^2.
 7nm,1,idle,0,400,energy in pJ; (20x20) area in um^2

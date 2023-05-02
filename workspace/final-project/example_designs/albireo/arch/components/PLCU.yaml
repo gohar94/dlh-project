@@ -4,9 +4,9 @@ compound_components:
     - name: PLCU
       attributes:
         technology: 7nm
-        datawidth: 8 # TODO confirm; the MRR can do k^2 = 0.03 with 7 bit, we are simplifying to keep nice round numbers :)
-        PLCU_datawidth: 1 # TODO confirm; compute 1 bit input at a time
-        latency: 0.2ns # TODO confirm; this is based on 5GHz
+        datawidth: 8 # The MRR can do k^2 = 0.03 with 7 bit, we are simplifying to keep nice round numbers :)
+        PLCU_datawidth: 8 # for simplification, assume architecture is not bit serial. main reason is there is no one-to-one correlation between wavelengths and bits. if the architecture processes 10 wavelengths at once (for example), it is unclear how many bits are processed at once. assume a constant PLCU_datawidth of 8.
+        latency: 1ns # keep the default as in PIM. 
         Nm: 9
         Nd: 5
         nMRRs: 2 * Nm * Nd
@@ -31,8 +31,8 @@ compound_components:
             - name: mrrs[0..nMRRs-1]
               actions:
                 - name: compute
-                  action_share: nCycles # TODO confirm; compute 1 bit input at a time
+                  action_share: nCycles
             - name: mzms[0..nMZMs-1]
               actions:
                 - name: compute
-                  action_share: nCycles # TODO confirm; compute 1 bit input at a time
+                  action_share: nCycles
