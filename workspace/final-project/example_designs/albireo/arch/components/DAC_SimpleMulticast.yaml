@@ -6,7 +6,7 @@ compound_components:
         technology: 32nm
         latency: 1ns
         datawidth: 8
-        DAC_datawidth: 1
+        DAC_datawidth: 8
         num_converts: datawidth/DAC_datawidth
       subcomponents:
         - name: D2A_converter

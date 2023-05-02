@@ -23,7 +23,7 @@ architecture:
                 memory_width: 64
                 n_banks: 32
                 block-size: 4
-                word-bits: 8
+                word-bits: 16
                 read_bandwidth: 16
                 write_bandwidth: 16
                 n_rdwr_ports: 2
