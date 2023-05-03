@@ -33,8 +33,7 @@ compound_components:
             n_DAC_cycles: datawidth/ADC_datawidth
             action_name: transfer
             per_datatype_ERT: True
-            multicast_factor_argument: 2
-            # multicast_factor_argument: num_destinations
+            multicast_factor_argument: num_destinations
       actions:
         - name: compute
           subcomponents:

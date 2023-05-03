@@ -57,3 +57,25 @@ compound_components:
               actions:
                 - name: idle
 
+    # TODO: REMOVE THIS
+    - name: memcell_storage
+      attributes:
+        cmos_technology: 32nm
+        cell_technology: memristor
+        depth: 256
+        width: 16
+        cell_datawidth: 2
+      subcomponents:
+        - name: storage
+          class: ReRAMcell_storage
+          attributes:
+            technology: cell_technology
+            latency: latency
+            cellwidth: cell_datawidth
+      actions:
+        - name: read
+          subcomponents:
+            - name: storage
+              actions:
+                - name: idle
+

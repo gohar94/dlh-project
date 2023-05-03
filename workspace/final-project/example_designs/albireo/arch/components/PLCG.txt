@@ -7,7 +7,7 @@ compound_components:
         datawidth: 8
         PLCG_datawidth: 8
         nCycles: datawidth/PLCG_datawidth
-        nPLCUs: 4
+        nPLCUs: 3
       subcomponents:
         - name: weight_cache
           class: smartbuffer_RF
