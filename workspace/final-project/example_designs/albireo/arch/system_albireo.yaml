@@ -46,14 +46,42 @@ architecture:
                 datawidth: 8
                 DAC_datawidth: 8
                 n_DAC_cycles: datawidth/DAC_datawidth
-                n_PLCG_cols: 4
-                n_PLCG_rows: 4
+                n_PLCG_cols: 3
+                n_PLCG_rows: 3
                 action_name: transfer
                 per_datatype_ERT: True
-                multicast_factor_argument: 2
-                # multicast_factor_argument: num_destinations
-            - name: plcg[0..8] # TODO use nPLCG - 1 or something
-              class: PLCG
+                multicast_factor_argument: num_destinations
+            - name: A2D_NoC
+              class: SimpleMulticast         # timeloop class
+              subclass: ADC_SimpleMulticast  # accelergy class
               attributes:
-                datawidth: datawidth
+                datawidth: 8
+                ADC_datawidth: 8
+                n_DAC_cycles: 1   # number of cycles needed for a DAC to convert a datawidth-bit data = datawidth/DAC_datawidth
+                n_PLCG_cols: 3
+                n_PLCG_rows: 3
+                action_name: transfer
+                per_datatype_ERT: True
+                multicast_factor_argument: num_destinations
+          subtree:
+            - name: PLCG[0..8]
+              local:                 # "local" contains physical instantiations
+                - name: weight_cache
+                  class: smartbuffer_RF
+                  attributes:
+                    memory_depth: 16384 # 16KB
+                    memory_width: 64
+                    n_banks: 32
+                    block-size: 4
+                    word-bits: 8
+                    read_bandwidth: 16
+                    write_bandwidth: 16
+                    meshX: 3      
+                    meshY: 3  
+                - name: mac
+                  class: memcell_compute
+                  attributes:
+                    datawidth: 8   # datawidth in bits
+                    meshX: 3        # number of components in the X dimension (PE rows)
+                    meshY: 3        # number of components in the Y dimension (PE cols)
             # TODO Add aggregator here
