@@ -6,16 +6,11 @@ compound_components:
         technology: 32nm
         latency: 1ns
         datawidth: 8
-        meshX: 128
-        meshY: 128
-        cell_datawidth: 2
-        n_DAC_cycles: 8
-        nCells: datawidth/cell_datawidth
-        nArrays: nCells
-        total_S_As: nArrays
+        n_DAC_cycles: 1
         S_A_datawidth: datawidth
-        S_As_per_psum: nCells * n_DAC_cycles
-        buffer_per_psum: n_DAC_cycles - 2
+        S_As_per_psum: 1
+        # TODO this is assuming ceil(Wz / Nu) = 9 (3x3 filter size) / 3 = 3
+        buffer_per_psum: 3
       subcomponents:
         - name: S_A
           class: shift_and_add
@@ -24,17 +19,16 @@ compound_components:
             latency: latency
             datawidth: S_A_datawidth
         - name: outputBuffer
-          class: SRAM
+          class: regfile
           attributes:
-            technology: technology
-            latency: latency
-            width: 16
-            depth: 128
-            datawidth: 16
+            depth: 5
+            width: 8
+            word-bits: 8
+            block-size: 1
       actions:
         - name: accumulate
           subcomponents:
-            - name: S_A
+            - name: S_A # assume this S_A is fast enough to do the computations needed in one cycle
               actions:
                 - name: shift_and_add
                   action_share: S_As_per_psum

@@ -4,12 +4,15 @@ architecture:
     - name: system_arch
       attributes:
         technology: 7nm
-        latency: 1ns
+        latency: 0.2ns
       local:
+        # Offchip DRAM is the source of all datatypes.
+        # Assume DRAM is large enough to store all the data;
+        # so no depth specification needed.
         - name: DRAM
           class: DRAM
           attributes:
-            technology: 32nm
+            type: LPDDR4
             width: 64
             datawidth: 16
             block-size: 4
@@ -20,6 +23,7 @@ architecture:
               class: smartbuffer_SRAM
               attributes:
                 technology: 7nm
+                latency: 0.2ns
                 memory_depth: 262144 # 256KB
                 memory_width: 64
                 n_banks: 32
@@ -27,13 +31,15 @@ architecture:
                 word-bits: 16
                 read_bandwidth: 16
                 write_bandwidth: 16
-                n_rdwr_ports: 2
+                # TODO This is read from DRAM, still digital.
+                # n_rdwr_ports: 2
                 network_read: D2A_NoC
                 network_update: A2D_NoC
             - name: dummy_buffer
               class: dummy_storage
               attributes:
                 technology: 32nm
+                latency: 0.2ns
                 depth: 0
                 width: 16
                 network_fill: D2A_NoC
@@ -43,6 +49,7 @@ architecture:
               subclass: DAC_SimpleMulticast
               attributes:
                 technology: 32nm
+                latency: 0.2ns
                 datawidth: 8
                 DAC_datawidth: 8
                 n_DAC_cycles: datawidth/DAC_datawidth
@@ -58,8 +65,8 @@ architecture:
                 datawidth: 8
                 ADC_datawidth: 8
                 n_DAC_cycles: 1
-                n_PLCG_cols: 3
-                n_PLCG_rows: 3
+                n_PE_cols: 3
+                n_PE_rows: 3
                 action_name: transfer
                 per_datatype_ERT: True
                 multicast_factor_argument: num_destinations
@@ -76,7 +83,12 @@ architecture:
                     word-bits: 16
                     read_bandwidth: 16
                     write_bandwidth: 16
+                    meshX: 3
+                    meshY: 3
+                    latency: 0.2ns
                 - name: plcg
                   class: plcg_compute
                   attributes:
                     datawidth: 8
+                    meshX: 3
+                    meshY: 3

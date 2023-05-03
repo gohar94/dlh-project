@@ -51,9 +51,7 @@ num_weight_caches           = 9
 TIA_power_percent           = 0.0062
 ADC_power_percent           = 0.058
 num_TIA                     = 5
-num_ADC                     = 1
-
-
+num_ADC                     = 9
 
 
 
@@ -89,7 +87,6 @@ energy_per_mzm           = energy_all_ADC / num_ADC
 
 
 
-
 print("\nDERIVED:")
 print(f"{'energy_per_mac':<25} {prefix(energy_per_mac):>10}J")
 print(f"{'energy_all_mrrs':<25} {prefix(energy_all_mrrs):>10}J")
@@ -103,6 +100,3 @@ print(f"{'energy_per_TIAs':<25} {prefix(energy_per_TIA):>10}J")
 print(f"{'energy_all_ADC':<25} {prefix(energy_all_ADC):>10}J")
 print(f"{'energy_per_ADC':<25} {prefix(energy_per_mzm):>10}J")
 print(f"{'total_power_watts':<25} {prefix(total_power_watts):>10}W")
-
-
-

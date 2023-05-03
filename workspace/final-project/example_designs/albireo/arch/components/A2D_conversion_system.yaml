@@ -3,24 +3,13 @@ compound_components:
   classes:
     - name: A2D_conversion_system
       attributes:
-        technology: 32nm
-        latency: 1ns
-        datawidth: 16
-        cell_datawidth: 2
-        n_DAC_cycles: 16
+        # TODO we need to make a CSV for this with the paper's energy breakdown
+        technology: 7nm
+        latency: 0.2ns
+        datawidth: 8
         ADC_datawidth: 8
-        n_PE_cols: 8
-        nCells: datawidth/cell_datawidth
-        SH_datawidth: ADC_datawidth
-        total_SHs: nCells * n_PE_cols
-        ADC_converts_per_psum: nCells * n_DAC_cycles
+        ADC_converts_per_psum: 1
       subcomponents:
-        - name: SH[0..total_SHs-1]
-          class: sample_and_hold
-          attributes:
-            technology: technology
-            latency: latency
-            datawidth: SH_datawidth
         - name: ADC
           class: ADC
           attributes:
@@ -31,10 +20,6 @@ compound_components:
       actions:
         - name: convert
           subcomponents:
-            - name: SH[0..nCells-1]
-              actions:
-                - name: sample_and_hold
-                  action_share: n_DAC_cycles
             - name: ADC
               actions:
                 - name: convert

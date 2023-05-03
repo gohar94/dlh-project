@@ -6,7 +6,7 @@ compound_components:
         technology: 7nm
         datawidth: 8
         plcu_compute_datawidth: 8
-        latency: 1ns
+        latency: 0.2ns
         Nm: 9
         Nd: 5
         nMRRs: 2 * Nm * Nd
@@ -18,22 +18,17 @@ compound_components:
           attributes:
             technology: technology
             mrrwidth: plcu_compute_datawidth
-            latency: latency
+            latency: 0.2ns
+            meshX: 2 * Nm
+            meshY: Nd
         - name: mzms[0..nMZMs-1]
           class: MZM
           attributes:
             technology: technology
             mzmwidth: plcu_compute_datawidth
-            latency: latency
-        - name: A2D_NoC
-          class: ADC_SimpleMulticast
-          attributes:
-            datawidth: datawidth
-            ADC_datawidth: plcu_compute_datawidth
-            n_DAC_cycles: datawidth/ADC_datawidth
-            action_name: transfer
-            per_datatype_ERT: True
-            multicast_factor_argument: num_destinations
+            latency: 0.2ns
+            meshX: nMZMs
+            meshY: 1
       actions:
         - name: compute
           subcomponents:

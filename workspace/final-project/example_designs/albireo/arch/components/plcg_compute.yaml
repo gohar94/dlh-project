@@ -8,6 +8,7 @@ compound_components:
         plcg_compute_datawidth: 8
         nCycles: datawidth/plcg_compute_datawidth
         nPLCUs: 3
+        latency: 0.2ns
       subcomponents:
         - name: plcu[0..nPLCUs-1]
           class: plcu_compute
@@ -15,8 +16,9 @@ compound_components:
             technology: 7nm
             datawidth: 8
             plcu_datawidth: 8
-            latency: 1ns
             nCycles: datawidth/plcu_datawidth
+            meshX: nPLCUs
+            meshY: 1
       actions:
         - name: compute
           subcomponents:
