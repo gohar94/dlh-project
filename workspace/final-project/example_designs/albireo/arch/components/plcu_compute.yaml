@@ -1,35 +1,35 @@
 compound_components:
   version: 0.3
   classes:
-    - name: PLCU
+    - name: plcu_compute
       attributes:
         technology: 7nm
         datawidth: 8
-        PLCU_datawidth: 8
+        plcu_compute_datawidth: 8
         latency: 1ns
         Nm: 9
         Nd: 5
         nMRRs: 2 * Nm * Nd
         nMZMs: Nm
-        nCycles: datawidth/PLCU_datawidth
+        nCycles: datawidth/plcu_compute_datawidth
       subcomponents:
         - name: mrrs[0..nMRRs-1]
           class: MRR
           attributes:
             technology: technology
-            mrrwidth: PLCU_datawidth
+            mrrwidth: plcu_compute_datawidth
             latency: latency
         - name: mzms[0..nMZMs-1]
           class: MZM
           attributes:
             technology: technology
-            mzmwidth: PLCU_datawidth
+            mzmwidth: plcu_compute_datawidth
             latency: latency
         - name: A2D_NoC
           class: ADC_SimpleMulticast
           attributes:
             datawidth: datawidth
-            ADC_datawidth: PLCU_datawidth
+            ADC_datawidth: plcu_compute_datawidth
             n_DAC_cycles: datawidth/ADC_datawidth
             action_name: transfer
             per_datatype_ERT: True
