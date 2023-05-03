@@ -11,3 +11,14 @@ Run the following script to get an energy breakdown derived from the results in 
 ```
 python3 energy_calculation.py
 ```
+
+### Accelergy modification
+
+We require the following primitive components file to be packaged with Accelergy: `albireo_primitive_component.lib.yaml`
+
+For example, if running with the provided Docker container, please copy it inside the Accelergy installation as follows:
+
+Note: This needs to be run *inside* the container:
+```
+cp albireo_primitive_component.lib.yaml /usr/local/share/accelergy/primitive_component_libs/
+```
