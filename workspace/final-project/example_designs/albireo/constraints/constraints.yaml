@@ -46,3 +46,13 @@ mapspace:
     - target: weight_cache
       type: temporal
       factors: R=1 S=1 M=1 C=1  # single weight tile that does not change
+    # =======================================
+    # Dummy Buffer MRR Constraints
+    # =======================================
+    - target: dummy_buffer_mrr
+      type: bypassing
+      keep: [Weights]
+      bypass: [Inputs, Outputs]
+    - target: dummy_buffer_mrr
+      type: temporal
+      factors: R=1 S=1 M=1 C=1  # single weight tile that does not change

@@ -29,6 +29,13 @@ compound_components:
             latency: 0.2ns
             meshX: nMZMs
             meshY: 1
+        - name: dummy_buffer_mrr
+          class: dummy_storage
+          attributes:
+            technology: 32nm # Does not matter?
+            latency: 0.2ns
+            depth: 0
+            width: 16
       actions:
         - name: compute
           subcomponents:
