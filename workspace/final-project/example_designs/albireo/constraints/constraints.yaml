@@ -9,7 +9,7 @@ mapspace:
       bypass: [Weights]  # weights are stored locally in the weight cache, not loaded from DRAM
     - target: DRAM
       type: temporal
-      factors: R=1 S=1 M=1 C=1
+      factors: R=1 S=1 M=1 C=1 Q=0
       permutation: RSCPQMN
     # =======================================
     # Global Buffer Constraints
@@ -30,12 +30,12 @@ mapspace:
       bypass: [Inputs, Outputs, Weights]  # no data should be stored in dummy, it is just a transition buffer
     - target: dummy_buffer
       type: spatial
-      factors: Q=1 P=1
-      permutation: RSC M
-      split: 3  # M cannot be mapped in the same dimension as others
+      factors: Q=1 P=1 R=1 S=1 C=1 M=0
+      permutation: M
+      split: 1  # M cannot be mapped in the same dimension as others
     - target: dummy_buffer
       type: temporal
-      factors: R=1 S=1 M=1 C=1
+      factors: M=1
     # =======================================
     # WS Buffer Constraints
     # =======================================
@@ -44,5 +44,10 @@ mapspace:
       keep: [Weights]
       bypass: [Inputs, Outputs]
     - target: weight_cache
+      type: spatial
+      factors: Q=1 P=1 R=1 S=1 M=1
+      permutation: C
+      split: 1  # C cannot be mapped in the same dimension as others
+    - target: weight_cache
       type: temporal
-      factors: R=1 S=1 M=1 C=1  # single weight tile that does not change
+      factors: C=1  # single weight tile that does not change

@@ -84,7 +84,21 @@ architecture:
                     read_bandwidth: 16
                     write_bandwidth: 16
                     latency: 0.2ns
-                - name: plcg
-                  class: plcg_compute
+                - name: plcu_dummy_buffer[0..2]
+                  class: dummy_storage
                   attributes:
+                    technology: 32nm
+                    latency: 0.2ns
+                    depth: 0
+                    width: 16
+                    # meshX: 3
+                    # meshY: 1
+                - name: plcu[0..2]
+                  class: plcu_compute
+                  attributes:
+                    technology: 7nm
                     datawidth: 8
+                    plcu_datawidth: 8
+                    nCycles: datawidth/plcu_datawidth
+                    # meshX: 3
+                    # meshY: 1
