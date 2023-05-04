@@ -6,7 +6,7 @@ mapspace:
     - target: DRAM
       type: bypassing
       keep: [Inputs, Outputs]
-      bypass: [Weights]  # weights are stored locally in the memcells, not loaded from DRAM
+      bypass: [Weights]  # weights are stored locally in the weight cache, not loaded from DRAM
     - target: DRAM
       type: temporal
       factors: R=1 S=1 M=1 C=1
@@ -17,7 +17,7 @@ mapspace:
     - target: shared_glb
       type: bypassing
       keep: [Inputs, Outputs]
-      bypass: [Weights] # weights are stored locally in the memcells, not loaded from DRAM
+      bypass: [Weights] # weights are stored locally in the weight cache, not loaded from DRAM
     - target: shared_glb
       type: temporal
       # factors: R=1 S=1 M=1 C=1 # TODO(girfan): Ask TA if this makes sense.

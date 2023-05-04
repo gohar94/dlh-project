@@ -13,7 +13,7 @@ compound_components:
         - name: ADC
           class: ADC
           attributes:
-            technology: technology
+            technology: 7nm
             latency: latency
             type: SAR
             datawidth: ADC_datawidth
