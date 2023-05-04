@@ -54,6 +54,12 @@ class ConfigRegistry:
     ALEXNET_LAYER4  = LAYER_SHAPES_DIR / 'AlexNet/AlexNet_layer4.yaml'
     ALEXNET_LAYER5  = LAYER_SHAPES_DIR / 'AlexNet/AlexNet_layer5.yaml'
 
+    #################################
+    # Debugging
+    #################################
+    LAYER_SHAPES_DIR = Path('layer_shapes')
+    DEBUGGING_LAYER  = LAYER_SHAPES_DIR / 'Debugging/tinylayer.yaml'
+
 def load_config(*paths):
     yaml = YAML(typ='safe')
     yaml.version = (1, 2)
