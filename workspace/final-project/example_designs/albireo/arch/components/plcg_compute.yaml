@@ -17,7 +17,6 @@ compound_components:
             datawidth: 8
             plcu_datawidth: 8
             nCycles: datawidth/plcu_datawidth
-            meshX: 1
       actions:
         - name: compute
           subcomponents:

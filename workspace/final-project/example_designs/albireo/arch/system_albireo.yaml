@@ -24,10 +24,10 @@ architecture:
               attributes:
                 technology: 7nm
                 latency: 0.2ns
-                memory_depth: 262144 # 256KB
+                memory_depth: 65536
                 memory_width: 64
                 n_banks: 32
-                block-size: 4
+                block-size: 4 # 65536 * 4 = 256KB
                 word-bits: 16
                 read_bandwidth: 16
                 write_bandwidth: 16
@@ -76,19 +76,15 @@ architecture:
                 - name: weight_cache
                   class: smartbuffer_RF
                   attributes:
-                    memory_depth: 16384 # 16KB
+                    memory_depth: 4096
                     memory_width: 64
                     n_banks: 32
-                    block-size: 4
+                    block-size: 4 # 4096 * 4 = 16KB
                     word-bits: 16
                     read_bandwidth: 16
                     write_bandwidth: 16
-                    meshX: 3
-                    meshY: 3
                     latency: 0.2ns
                 - name: plcg
                   class: plcg_compute
                   attributes:
                     datawidth: 8
-                    meshX: 3
-                    meshY: 3
