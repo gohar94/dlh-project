@@ -43,6 +43,7 @@ class ConfigRegistry:
     ALBIREO_COMPONENTS_DIR   = ALBIREO_DIR / 'arch/components'
     ALBIREO_CONSTRAINTS      = ALBIREO_DIR / 'constraints/constraints.yaml'
     ALBIREO_MAPPER           = ALBIREO_DIR / 'mapper/mapper.yaml'
+    ALBIREO_MAPPING          = ALBIREO_DIR / 'map/map.yaml'
     
     #################################
     # Problems
