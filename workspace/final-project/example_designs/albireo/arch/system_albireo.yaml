@@ -71,7 +71,7 @@ architecture:
                 per_datatype_ERT: True
                 multicast_factor_argument: num_destinations
           subtree:
-            - name: mac[0..8]
+            - name: plcg[0..8]
               local:
                 - name: weight_cache
                   class: smartbuffer_RF
