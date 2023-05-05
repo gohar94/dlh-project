@@ -1,46 +1,62 @@
-mapspace:
+mapping:
   # =======================================
   # DRAM
   # =======================================
   - target: DRAM
-    type: bypassing
+    type: bypass
     keep: [Inputs, Outputs]
     bypass: [Weights]  # weights are stored locally in the weight cache, not loaded from DRAM
+  - target: DRAM
+    type: temporal
+    factors: R=1 S=1 P=0 Q=6 N=0 M=43 C=86
+    permutation: SRCQPMN
   # =======================================
   # Global Buffer Constraints
   # =======================================
   - target: shared_glb
-    type: bypassing
+    type: bypass
     keep: [Inputs, Outputs, Weights]
     bypass: [] # weights are stored locally in the weight cache, not loaded from DRAM
   # =======================================
   # Dummy Buffer Constraints
   # =======================================
   - target: dummy_buffer
+    type: temporal
+    factors: R=1 S=1 P=1 Q=1 N=1 C=1 M=1
+  - target: dummy_buffer
     type: spatial
+    factors: R=1 S=1 P=1 Q=1 N=1 C=1 M=9,6
     permutation: M
   - target: dummy_buffer
-    type: bypassing
+    type: bypass
     keep: []
     bypass: [Inputs, Outputs, Weights]  # no data should be stored in dummy, it is just a transition buffer
   # =======================================
   # WS Buffer Constraints
   # =======================================
   - target: weight_cache
-    type: spatial
-    permutation: C
+    type: temporal
   - target: weight_cache
-    type: bypassing
+    type: spatial
+    factors: R=1 S=1 P=1 Q=1 N=1 C=3,1 M=1
+    permutation: C
+    split: 1
+  - target: weight_cache
+    type: bypass
     keep: [Weights]
     bypass: [Inputs, Outputs]
   # =======================================
   # PLCU Dummy Buffer Constraints
   # =======================================
   - target: plcu_dummy_buffer
-    type: spatial
-    permutation: M
+    type: temporal
   - target: plcu_dummy_buffer
-    type: bypassing
+    type: spatial
+    factors: R=1 S=1 P=1 Q=5,2 N=1 C=1 M=1
+    permutation: Q
+    split: 1
+  - target: plcu_dummy_buffer
+    type: bypass
     keep: []
     bypass: [Inputs, Outputs, Weights]  # no data should be stored in dummy, it is just a transition buffer
   # =======================================
@@ -48,7 +64,8 @@ mapspace:
   # =======================================
   - target: psumBuffer
     type: temporal
+    factors: R=0 S=0 P=1 Q=1 N=1 C=1 M=1
   - target: psumBuffer
-    type: bypassing
+    type: bypass
     keep: [Outputs]
     bypass: [Inputs,Weights]  # no data should be stored in dummy, it is just a transition buffer

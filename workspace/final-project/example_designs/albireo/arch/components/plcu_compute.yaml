@@ -1,42 +1,43 @@
 compound_components:
   version: 0.3
   classes:
+    # Note:
+    # This class represents a *column* of the PLCU grid of 9 * 2 MRRs.
+    # The entire grid has 5 columns and 9 rows.
+    # For simpler approximation, we are assuming 2 MZMs per column.
+    # This overestimates the number of MZMs to be 5 * 2 = 10 instead of 9.
     - name: plcu_compute
       attributes:
         technology: 7nm
         datawidth: 8
         plcu_compute_datawidth: 8
         latency: 0.2ns
-        Nm: 9
-        Nd: 5
-        nMRRs: 2 * Nm * Nd
-        nMZMs: Nm
         nCycles: datawidth/plcu_compute_datawidth
       subcomponents:
-        - name: mrrs[0..nMRRs-1]
+        # Note:
+        # 18 MRRs in a single column.
+        - name: mrrs[0..17]
           class: MRR_compute
           attributes:
             technology: technology
             datawidth: 8
             latency: 0.2ns
-            meshX: 2 * Nm
-            meshY: Nd
-        - name: mzms[0..nMZMs-1]
+        # Note:
+        # 2 MZMs.
+        - name: mzms[0..1]
           class: MZM_compute
           attributes:
             technology: technology
             datawidth: 8
             latency: 0.2ns
-            meshX: nMZMs
-            meshY: 1
       actions:
         - name: compute
           subcomponents:
-            - name: mrrs[0..nMRRs-1]
+            - name: mrrs
               actions:
                 - name: compute
                   action_share: nCycles
-            - name: mzms[0..nMZMs-1]
+            - name: mzms
               actions:
                 - name: compute
                   action_share: nCycles

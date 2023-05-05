@@ -3,8 +3,8 @@ compound_components:
   classes:
     - name: ADC_SimpleMulticast
       attributes:
-        technology: 45nm
-        latency: 1ns
+        technology: 7nm
+        latency: 0.2ns
         datawidth: 8
         A2D_convert_width: 1
         ADC_datawidth: 8
@@ -13,18 +13,11 @@ compound_components:
         - name: A2D_converter[0..8]
           class: A2D_conversion_system
           attributes:
-            technology: technology
-            latency: latency
+            technology: 7nm
+            latency: 0.2ns
             datawidth: 8
             ADC_datawidth: 8
             n_DAC_cycles: 1
-        - name: digital_accumulator[0..8]
-          class: digital_accumulation_system
-          attributes:
-            technology: technology
-            latency: latency
-            datawidth: datawidth
-            n_DAC_cycles: n_DAC_cycles
       actions:
         - name: transfer_Outputs
           arguments:
@@ -33,6 +26,3 @@ compound_components:
             - name: A2D_converter[0..8]
               actions:
                 - name: convert
-            - name: digital_accumulator[0..8]
-              actions:
-                - name: accumulate

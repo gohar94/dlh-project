@@ -69,20 +69,20 @@ architecture:
                 action_name: transfer
                 per_datatype_ERT: True
                 multicast_factor_argument: num_destinations
-            # - name: plcg_dummy_buffer[0..2]
-            #   class: dummy_storage
-            #   attributes:
-            #     technology: 7nm
-            #     latency: 0.2ns
-            #     depth: 0
-            #     width: 16
-            #     meshX: 3
-            #     meshY: 1
+            - name: plcg_dummy_buffer[0..2]
+              class: dummy_storage
+              attributes:
+                technology: 7nm
+                latency: 0.2ns
+                depth: 0
+                width: 16
+                meshX: 3
+                meshY: 1
           subtree:
             - name: plcg[0..8]
               attributes:
-                meshX: 9
-                meshY: 1
+                meshX: 3
+                meshY: 3
               local:
                 - name: weight_cache
                   class: smartbuffer_RF
@@ -95,13 +95,13 @@ architecture:
                     read_bandwidth: 16
                     write_bandwidth: 16
                     latency: 0.2ns
-                    meshX: 9
-                    meshY: 1
+                    meshX: 3
+                    meshY: 3
               subtree:
                 - name: plcu[0..2]
                   attributes:
-                    meshX: 27
-                    meshY: 1
+                    meshX: 3
+                    meshY: 9
                   local:
                     - name: plcu_dummy_buffer
                       class: dummy_storage
@@ -110,8 +110,8 @@ architecture:
                         latency: 0.2ns
                         depth: 0
                         width: 16
-                        meshX: 27
-                        meshY: 1
+                        meshX: 3
+                        meshY: 9
                     - name: psumBuffer[0..4]
                       class: regfile
                       attributes:
@@ -120,8 +120,8 @@ architecture:
                         width: 16
                         depth: 1
                         datawidth: 16
-                        meshX: 135
-                        meshY: 1
+                        meshX: 15
+                        meshY: 9
                     # Note:
                     # Each OMAC here is a *column* of the PLCU grid of 9 * 2 MRRs.
                     # There are 5 such columns in the PLCU.
@@ -132,5 +132,5 @@ architecture:
                         datawidth: 8
                         plcu_datawidth: 8
                         nCycles: datawidth/plcu_datawidth
-                        meshX: 135
-                        meshY: 1
+                        meshX: 15
+                        meshY: 9

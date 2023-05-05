@@ -1,0 +1,51 @@
+mapspace:
+  targets:
+    # =======================================
+    # DRAM
+    # =======================================
+    - target: DRAM
+      type: bypassing
+      keep: [Inputs, Outputs]
+      bypass: [Weights]  # weights are stored locally in the weight cache, not loaded from DRAM
+    - target: DRAM
+      type: temporal
+      permutation: RSCPQMN
+    # =======================================
+    # Global Buffer Constraints
+    # =======================================
+    # - target: shared_glb
+    #   type: bypassing
+    #   keep: [Inputs, Outputs]
+    #   bypass: [Weights] # weights are stored locally in the weight cache, not loaded from DRAM
+    - target: shared_glb
+      type: temporal
+      # factors: R=1 S=1 M=1 C=1 # TODO(girfan): Ask TA if this makes sense.
+    # =======================================
+    # Dummy Buffer Constraints
+    # =======================================
+    - target: dummy_buffer
+      type: temporal
+      # factors: R=1 S=1 P=1 Q=1 N=1 C=1 M=1
+    # - target: dummy_buffer
+    #   type: spatial
+    #   factors: R=1 S=1 P=1 Q=1 N=1 C=1 M=9,6
+    #   permutation: M
+    - target: dummy_buffer
+      type: bypass
+      keep: []
+      bypass: [Inputs, Outputs, Weights]  # no data should be stored in dummy, it is just a transition buffer
+    # =======================================
+    # WS Buffer Constraints
+    # =======================================
+    - target: weight_cache
+      type: bypassing
+      keep: [Weights]
+      bypass: [Inputs, Outputs]
+    # - target: weight_cache
+    #   type: spatial
+    #   factors: Q=1 P=1 R=1 S=1 M=1
+    #   permutation: C
+    #   split: 1  # C cannot be mapped in the same dimension as others
+    # - target: weight_cache
+    #   type: temporal
+    #   factors: C=1  # single weight tile that does not change

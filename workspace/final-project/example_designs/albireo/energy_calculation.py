@@ -50,7 +50,7 @@ num_mzms                    = 9
 num_weight_caches           = 9
 TIA_power_percent           = 0.0062
 ADC_power_percent           = 0.058
-num_TIA                     = 5
+num_TIA                     = 45
 num_ADC                     = 9
 
 

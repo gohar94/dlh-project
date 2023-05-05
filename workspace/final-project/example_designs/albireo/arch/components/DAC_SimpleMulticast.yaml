@@ -3,8 +3,8 @@ compound_components:
   classes:
     - name: DAC_SimpleMulticast
       attributes:
-        technology: 32nm
-        latency: 1ns
+        technology: 7nm
+        latency: 0.2ns
         datawidth: 8
         DAC_datawidth: 8
         num_converts: datawidth/DAC_datawidth

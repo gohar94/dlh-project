@@ -3,8 +3,8 @@ compound_components:
   classes:
     - name: D2A_conversion_system
       attributes:
-        technology: 32nm
-        latency: 1ns
+        technology: 7nm
+        latency: 0.2ns
         datawidth: 8
         DAC_datawidth: 8
         nDACs: 1

@@ -11,7 +11,7 @@ compound_components:
         ADC_converts_per_psum: 1
       subcomponents:
         - name: ADC
-          class: ADC
+          class: ADC_albireo
           attributes:
             technology: 7nm
             latency: latency
