@@ -32,7 +32,6 @@ architecture:
                 read_bandwidth: 16
                 write_bandwidth: 16
                 # TODO This is read from DRAM, still digital.
-                # n_rdwr_ports: 2
                 network_read: D2A_NoC
                 network_update: A2D_NoC
             - name: dummy_buffer
@@ -91,8 +90,6 @@ architecture:
                     latency: 0.2ns
                     depth: 0
                     width: 16
-                    # meshX: 3
-                    # meshY: 1
                 - name: plcu[0..2]
                   class: plcu_compute
                   attributes:
@@ -100,5 +97,3 @@ architecture:
                     datawidth: 8
                     plcu_datawidth: 8
                     nCycles: datawidth/plcu_datawidth
-                    # meshX: 3
-                    # meshY: 1

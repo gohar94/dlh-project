@@ -1,6 +1,6 @@
 version: 0.3
 classes:
-  - name: MRR
+  - name: MRR_compute
     attributes:
       technology: 7nm
       latency: 1ns
@@ -9,7 +9,7 @@ classes:
     actions:
       - name: compute
       - name: idle
-  - name: MZM
+  - name: MZM_compute
     attributes:
       technology: 7nm
       latency: 1ns

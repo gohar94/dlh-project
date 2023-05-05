@@ -1,0 +1,12 @@
+compound_components:
+  version: 0.3
+  classes:
+    - name: PD
+      attributes:
+        datawidth: 8
+        convert_datawidth: 8
+        nCycles: datawidth/convert_datawidth
+        compute_latency: 0.3ns #TODO: https://electronics.stackexchange.com/questions/227544/what-is-a-typical-response-time-for-a-photodiode-phototransistor
+      actions:
+        - name: convert
+        action_share: PD_converts_per_psum

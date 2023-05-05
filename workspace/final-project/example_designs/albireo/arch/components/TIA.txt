@@ -1,0 +1,12 @@
+compound_components:
+  version: 0.3
+  classes:
+    - name: TIA
+      attributes:
+        datawidth: 8
+        convert_datawidth: 8
+        nCycles: datawidth/convert_datawidth
+        compute_latency: 10ns #TODO: https://electronics.stackexchange.com/questions/320473/gain-and-rise-time-with-transimpedance-amplifier-circuit
+      actions:
+        - name: convert
+        action_share: TIA_converts_per_psum

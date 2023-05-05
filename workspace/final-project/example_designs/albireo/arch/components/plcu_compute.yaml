@@ -14,18 +14,18 @@ compound_components:
         nCycles: datawidth/plcu_compute_datawidth
       subcomponents:
         - name: mrrs[0..nMRRs-1]
-          class: MRR
+          class: MRR_compute
           attributes:
             technology: technology
-            mrrwidth: plcu_compute_datawidth
+            datawidth: 8
             latency: 0.2ns
             meshX: 2 * Nm
             meshY: Nd
         - name: mzms[0..nMZMs-1]
-          class: MZM
+          class: MZM_compute
           attributes:
             technology: technology
-            mzmwidth: plcu_compute_datawidth
+            datawidth: 8
             latency: 0.2ns
             meshX: nMZMs
             meshY: 1

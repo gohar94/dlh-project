@@ -18,14 +18,14 @@ compound_components:
             DAC_datawidth: DAC_datawidth
             cell_datawidth: cell_datawidth
         - name: MRR_grid
-          class: MRR
+          class: MRR_compute
           attributes:
             technology: technology
             latency: latency
             datawidth: datawidth
             DAC_datawidth: DAC_datawidth
         - name: MZM_grid # TODO unclear if this is needed; but the paper seems to suggest this
-          class: MZM
+          class: MZM_compute
           attributes:
             technology: technology
             latency: latency

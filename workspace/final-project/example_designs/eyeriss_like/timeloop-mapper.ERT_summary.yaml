@@ -1,0 +1,126 @@
+ERT_summary:
+  version: 0.3
+  table_summary:
+  - name: system.eyeriss.PE[0..167].mac
+    actions:
+    - name: mac_random
+      energy: 1
+    - name: mac_reused
+      energy: 1
+    - name: mac_gated
+      energy: 1
+    - name: idle
+      energy: 0
+    primitive_estimation(s):
+    - name: system.eyeriss.PE[0..167].mac
+      estimator: dummy_table
+  - name: system.eyeriss.DummyBuffer[0..13]
+    actions:
+    - name: read
+      average_energy: 1.0
+      max_energy: 1
+      min_energy: 1
+    - name: write
+      average_energy: 1.0
+      max_energy: 1
+      min_energy: 1
+    - name: idle
+      energy: 0
+    primitive_estimation(s):
+    - name: system.eyeriss.DummyBuffer[0..13]
+      estimator: dummy_table
+  - name: system.DRAM
+    actions:
+    - name: read
+      energy: 512
+    - name: write
+      energy: 512
+    - name: idle
+      energy: 0
+    primitive_estimation(s):
+    - name: system.DRAM
+      estimator: Cacti
+  - name: system.eyeriss.PE[0..167].ifmap_spad
+    actions:
+    - name: write
+      average_energy: 2.0
+      max_energy: 2
+      min_energy: 2
+    - name: read
+      average_energy: 2.0
+      max_energy: 2
+      min_energy: 2
+    - name: idle
+      energy: 0
+    primitive_estimation(s):
+    - name: storage
+      estimator: dummy_table
+    - name: address_generators[0]
+      estimator: dummy_table
+    - name: address_generators[1]
+      estimator: dummy_table
+    - name: address_generators[0..1]
+      estimator: dummy_table
+  - name: system.eyeriss.PE[0..167].weights_spad
+    actions:
+    - name: write
+      average_energy: 2.0
+      max_energy: 2
+      min_energy: 2
+    - name: read
+      average_energy: 2.0
+      max_energy: 2
+      min_energy: 2
+    - name: idle
+      energy: 0
+    primitive_estimation(s):
+    - name: storage
+      estimator: dummy_table
+    - name: address_generators[0]
+      estimator: dummy_table
+    - name: address_generators[1]
+      estimator: dummy_table
+    - name: address_generators[0..1]
+      estimator: dummy_table
+  - name: system.eyeriss.PE[0..167].psum_spad
+    actions:
+    - name: write
+      average_energy: 2.0
+      max_energy: 2
+      min_energy: 2
+    - name: read
+      average_energy: 2.0
+      max_energy: 2
+      min_energy: 2
+    - name: idle
+      energy: 0
+    primitive_estimation(s):
+    - name: storage
+      estimator: dummy_table
+    - name: address_generators[0]
+      estimator: dummy_table
+    - name: address_generators[1]
+      estimator: dummy_table
+    - name: address_generators[0..1]
+      estimator: dummy_table
+  - name: system.eyeriss.shared_glb
+    actions:
+    - name: write
+      average_energy: 72.81526
+      max_energy: 144.556
+      min_energy: 1.07453
+    - name: read
+      average_energy: 71.71226
+      max_energy: 142.35
+      min_energy: 1.07453
+    - name: idle
+      energy: 0.07453
+    primitive_estimation(s):
+    - name: storage
+      estimator: Cacti
+    - name: address_generators[0]
+      estimator: dummy_table
+    - name: address_generators[1]
+      estimator: dummy_table
+    - name: address_generators[0..1]
+      estimator: dummy_table

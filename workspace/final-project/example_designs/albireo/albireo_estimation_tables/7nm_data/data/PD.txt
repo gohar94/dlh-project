@@ -1,0 +1,3 @@
+technology,datawidth,action,energy,area,comment
+7nm,1,convert,TODO,1600,(NOTE: Computation is in Viniths iPad) energy in pJ; (40×40) area in um^2
+7nm,1,idle,0,1600,energy in pJ; (300×50) area in um^2

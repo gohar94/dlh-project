@@ -1,0 +1,77 @@
+# compound_components:
+#   version: 0.3
+#   classes:
+#     - name: PLCU
+#       attributes:
+#         technology: 7nm
+#         datawidth: 8
+#         PLCU_datawidth: 8
+#         latency: 1ns
+#         Nm: 9
+#         Nd: 5
+#         nMRRs: 2 * Nm * Nd
+#         nMZMs: Nm
+#         nCycles: datawidth/PLCU_datawidth
+      # subcomponents:
+      #   - name: mrrs[0..nMRRs-1]
+      #     class: MRR
+      #     attributes:
+      #       technology: technology
+      #       mrrwidth: PLCU_datawidth
+      #       latency: latency
+      #   - name: mzms[0..nMZMs-1]
+      #     class: MZM
+      #     attributes:
+      #       technology: technology
+      #       mzmwidth: PLCU_datawidth
+      #       latency: latency
+      #   - name: A2D_NoC
+      #     class: ADC_SimpleMulticast
+      #     attributes:
+      #       datawidth: datawidth
+      #       ADC_datawidth: PLCU_datawidth
+      #       n_DAC_cycles: datawidth/ADC_datawidth
+      #       action_name: transfer
+      #       per_datatype_ERT: True
+      #       multicast_factor_argument: 2
+      #       # multicast_factor_argument: num_destinations
+      # actions:
+      #   - name: compute
+      #     subcomponents:
+      #       - name: mrrs[0..nMRRs-1]
+      #         actions:
+      #           - name: compute
+      #             action_share: nCycles
+      #       - name: mzms[0..nMZMs-1]
+      #         actions:
+      #           - name: compute
+      #             action_share: nCycles
+
+compound_components:
+  version: 0.3
+  classes:
+    - name: PLCU
+      attributes:
+        technology: 32nm
+        cell_technology: memristor
+        cmos_technology: 32nm
+        cell_datawidth: 2
+        DAC_datawidth: 1
+        datawidth: 16
+        nCells: datawidth/cell_datawidth
+        nCycles: datawidth/DAC_datawidth
+        compute_latency: 100ns
+      subcomponents:
+        - name: cell[0..nCells-1]
+          class: ReRAMcell_compute
+          attributes:
+            technology: cell_technology
+            cellwidth: cell_datawidth
+            latency: 100ns
+      actions:
+        - name: compute
+          subcomponents:
+            - name: cell[0..nCells-1] # spatial
+              actions:
+                - name: compute
+                  action_share: nCycles # temporal: compute 1 bit input at a time
