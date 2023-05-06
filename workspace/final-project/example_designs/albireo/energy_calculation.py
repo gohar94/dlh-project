@@ -2,6 +2,7 @@ import math
 
 
 # Powers of 10
+MICRO = 10**-6
 MILLI = 10**-3
 MEGA  = 10**6
 GIGA  = 10**9
@@ -107,3 +108,32 @@ print(f"{'energy_per_ADC':<25} {prefix(energy_per_ADC):>10}J")
 print(f"{'energy_all_DAC':<25} {prefix(energy_all_DAC):>10}J")
 print(f"{'energy_per_DAC':<25} {prefix(energy_per_DAC):>10}J")
 print(f"{'total_power_watts':<25} {prefix(total_power_watts):>10}W")
+
+
+def percent_to_decimal(x):
+    return x/100
+
+def area_to_base(area, units):
+    return area * (units * units)
+
+
+total_albireo_area = area_to_base(124.66, MILLI)
+
+mzi_area = total_albireo_area * percent_to_decimal(3.7)
+dac_area = total_albireo_area * percent_to_decimal(0.03)
+adc_area = total_albireo_area * percent_to_decimal(0.4)
+mrr_area = total_albireo_area * percent_to_decimal(0.8)
+
+print()
+print("MZI area in mm^2: {:.4f}".format(area_to_base(mzi_area, 1/MILLI)))
+print("DAC area in mm^2: {:.4f}".format(area_to_base(dac_area, 1/MILLI)))
+print("ADC area in mm^2: {:.4f}".format(area_to_base(adc_area, 1/MILLI)))
+print("MRR area in mm^2: {:.4f}".format(area_to_base(mrr_area, 1/MILLI)))
+print()
+
+print()
+print("MZI area in um^2: {:.4f}".format(area_to_base(mzi_area, 1/MICRO)))
+print("DAC area in um^2: {:.4f}".format(area_to_base(dac_area, 1/MICRO)))
+print("ADC area in um^2: {:.4f}".format(area_to_base(adc_area, 1/MICRO)))
+print("MRR area in um^2: {:.4f}".format(area_to_base(mrr_area, 1/MICRO)))
+print()
