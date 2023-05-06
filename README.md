@@ -1,4 +1,4 @@
-# Report Due Date: May 10, 2023, 11:59PM EST
+# Report Due Date: May 8, 2023, 11:59PM EST
 
 # Final Project Baselines
 For detailed instructions, please read [./workspace/final-project/README.md](./workspace/final-project/README.md). 
