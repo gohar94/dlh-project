@@ -18,19 +18,21 @@ classes:
     actions:
       - name: compute
       - name: idle
-  - name: PD
+  - name: ADC_albireo
     attributes:
       technology: 7nm
       latency: 1ns
       datawidth: 8
+      DAC_datawidth: 8
     actions:
       - name: compute
       - name: idle
-  - name: TIA
+  - name: DAC_albireo
     attributes:
       technology: 7nm
       latency: 1ns
       datawidth: 8
+      DAC_datawidth: 8
     actions:
       - name: compute
       - name: idle

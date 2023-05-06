@@ -8,15 +8,15 @@ compound_components:
         datawidth: 8
         DAC_datawidth: 8
         nDACs: 1
-        nCycles: datawidth/DAC_datawidth
-        DAC_converts_per_psum: nCycles
+        nCycles: 1
+        DAC_converts_per_psum: 1
       subcomponents:
         - name: DAC
-          class: DAC
+          class: DAC_albireo
           attributes:
-            technology: technology
-            latency: latency
-            datawidth: DAC_datawidth
+            technology: 7nm
+            latency: 0.2ns
+            datawidth: 8
       actions:
         - name: convert
           subcomponents:

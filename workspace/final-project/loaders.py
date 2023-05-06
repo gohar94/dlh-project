@@ -46,6 +46,8 @@ class ConfigRegistry:
     ALBIREO_MAPPING_ALEXNET_L1 = ALBIREO_DIR / 'map/map_alexnet_layer1.yaml'
     ALBIREO_MAPPING_ALEXNET_L2 = ALBIREO_DIR / 'map/map_alexnet_layer2.yaml'
     ALBIREO_MAPPING_ALEXNET_L3 = ALBIREO_DIR / 'map/map_alexnet_layer3.yaml'
+    ALBIREO_MAPPING_ALEXNET_L4 = ALBIREO_DIR / 'map/map_alexnet_layer4.yaml'
+    ALBIREO_MAPPING_ALEXNET_L5 = ALBIREO_DIR / 'map/map_alexnet_layer5.yaml'
     
     #################################
     # Problems

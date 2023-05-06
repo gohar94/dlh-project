@@ -14,7 +14,7 @@ compound_components:
           class: ADC_albireo
           attributes:
             technology: 7nm
-            latency: latency
+            latency: 0.2ns
             type: SAR
             datawidth: ADC_datawidth
       actions:

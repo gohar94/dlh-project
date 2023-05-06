@@ -52,8 +52,8 @@ architecture:
                 datawidth: 8
                 DAC_datawidth: 8
                 n_DAC_cycles: datawidth/DAC_datawidth
-                n_PLCG_cols: 3
-                n_PLCG_rows: 3
+                n_PLCG_cols: 9
+                n_PLCG_rows: 1
                 action_name: transfer
                 per_datatype_ERT: True
                 multicast_factor_argument: num_destinations
@@ -61,23 +61,15 @@ architecture:
               class: SimpleMulticast
               subclass: ADC_SimpleMulticast
               attributes:
+                latency: 0.2ns
                 datawidth: 8
                 ADC_datawidth: 8
                 n_DAC_cycles: 1
-                n_PE_cols: 3
-                n_PE_rows: 3
+                n_PE_cols: 9
+                n_PE_rows: 1
                 action_name: transfer
                 per_datatype_ERT: True
                 multicast_factor_argument: num_destinations
-            # - name: plcg_dummy_buffer[0..2]
-            #   class: dummy_storage
-            #   attributes:
-            #     technology: 7nm
-            #     latency: 0.2ns
-            #     depth: 0
-            #     width: 16
-            #     meshX: 3
-            #     meshY: 1
           subtree:
             - name: plcg[0..8]
               attributes:
@@ -116,7 +108,7 @@ architecture:
                       class: regfile
                       attributes:
                         technology: technology
-                        latency: latency
+                        latency: 0.2ns
                         width: 16
                         depth: 1
                         datawidth: 16
@@ -129,6 +121,7 @@ architecture:
                       class: plcu_compute
                       attributes:
                         technology: 7nm
+                        latency: 0.2ns
                         datawidth: 8
                         plcu_datawidth: 8
                         nCycles: datawidth/plcu_datawidth
