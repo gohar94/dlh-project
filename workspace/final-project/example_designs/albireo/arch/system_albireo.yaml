@@ -14,8 +14,8 @@ architecture:
           attributes:
             type: LPDDR4
             width: 64
-            datawidth: 16
-            block-size: 4
+            datawidth: 8
+            block-size: 8
       subtree:
         - name: chip
           local:
@@ -24,14 +24,13 @@ architecture:
               attributes:
                 technology: 7nm
                 latency: 0.2ns
-                memory_depth: 65536
+                memory_depth: 32768
                 memory_width: 64
                 n_banks: 32
-                block-size: 4 # 65536 * 4 = 256KB
-                word-bits: 16
-                read_bandwidth: 16
-                write_bandwidth: 16
-                # TODO This is read from DRAM, still digital.
+                block-size: 8 # 32768 * 8 = 256KB
+                word-bits: 8
+                read_bandwidth: 64
+                write_bandwidth: 64
                 network_read: D2A_NoC
                 network_update: A2D_NoC
             - name: dummy_buffer
