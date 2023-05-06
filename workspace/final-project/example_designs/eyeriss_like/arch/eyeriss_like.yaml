@@ -26,8 +26,8 @@ architecture:
                 n_banks: 32
                 block-size: 4
                 word-bits: 16
-                read_bandwidth: 16
-                write_bandwidth: 16
+                read_bandwidth: 32
+                write_bandwidth: 32
             - name: DummyBuffer[0..13] # for better mapping
               class: regfile
               attributes:

@@ -3,16 +3,20 @@ mapping:
   # DRAM
   # =======================================
   - target: DRAM
+    type: temporal
+    factors: R=1 S=1 P=1 Q=11 N=1 M=1 C=1
+    permutation: Q
+  - target: DRAM
     type: bypass
     keep: [Inputs, Outputs]
     bypass: [Weights]  # weights are stored locally in the weight cache, not loaded from DRAM
-  - target: DRAM
-    type: temporal
-    factors: R=1 S=1 P=0 Q=11 N=0 M=11 C=1
-    permutation: SRCQPMN
   # =======================================
   # Global Buffer Constraints
   # =======================================
+  - target: shared_glb
+    type: temporal
+    factors: R=1 S=1 P=0 Q=1 N=0 M=11 C=1
+    permutation: SRCQPMN
   - target: shared_glb
     type: bypass
     keep: [Inputs, Outputs, Weights]

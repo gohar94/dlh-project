@@ -9,43 +9,61 @@ mapspace:
       bypass: [Weights]  # weights are stored locally in the weight cache, not loaded from DRAM
     - target: DRAM
       type: temporal
-      permutation: RSCPQMN
+      factors: R=1 S=1 N=0 M=1 C=1
+      # permutation: SRCQPMN
     # =======================================
     # Global Buffer Constraints
     # =======================================
-    # - target: shared_glb
-    #   type: bypassing
-    #   keep: [Inputs, Outputs]
-    #   bypass: [Weights] # weights are stored locally in the weight cache, not loaded from DRAM
     - target: shared_glb
-      type: temporal
-      # factors: R=1 S=1 M=1 C=1 # TODO(girfan): Ask TA if this makes sense.
+      type: bypassing
+      keep: [Inputs, Outputs, Weights]
+      bypass: [] # weights are stored locally in the weight cache, not loaded from DRAM
     # =======================================
     # Dummy Buffer Constraints
     # =======================================
     - target: dummy_buffer
       type: temporal
-      # factors: R=1 S=1 P=1 Q=1 N=1 C=1 M=1
-    # - target: dummy_buffer
-    #   type: spatial
-    #   factors: R=1 S=1 P=1 Q=1 N=1 C=1 M=9,6
-    #   permutation: M
+      factors: R=1 S=1 N=1 C=1 M=1
     - target: dummy_buffer
-      type: bypass
+      type: spatial
+      factors: R=1 S=1 P=1 Q=1 M<9 N=1 C=1
+      permutation: SRCQPNM
+      split: 7
+    - target: dummy_buffer
+      type: bypassing
       keep: []
       bypass: [Inputs, Outputs, Weights]  # no data should be stored in dummy, it is just a transition buffer
     # =======================================
     # WS Buffer Constraints
     # =======================================
+    # - target: weight_cache
+    #   type: temporal
+    - target: weight_cache
+      type: spatial
+      factors: R=1 S=1 N=1 C<3 M=1
     - target: weight_cache
       type: bypassing
       keep: [Weights]
       bypass: [Inputs, Outputs]
-    # - target: weight_cache
-    #   type: spatial
-    #   factors: Q=1 P=1 R=1 S=1 M=1
-    #   permutation: C
-    #   split: 1  # C cannot be mapped in the same dimension as others
-    # - target: weight_cache
+    # =======================================
+    # PLCU Dummy Buffer Constraints
+    # =======================================
+    # - target: plcu_dummy_buffer
     #   type: temporal
-    #   factors: C=1  # single weight tile that does not change
+    - target: plcu_dummy_buffer
+      type: spatial
+      factors: R=1 S=1 N=1 Q<5 C=1 M=1
+    - target: plcu_dummy_buffer
+      type: bypassing
+      keep: []
+      bypass: [Inputs, Outputs, Weights]  # no data should be stored in dummy, it is just a transition buffer
+    # =======================================
+    # pSum Buffer Constraints
+    # =======================================
+    - target: psumBuffer
+      type: temporal
+      factors: R=0 S=0 P=1 Q=1 N=1 C=1 M=1
+    - target: psumBuffer
+      type: bypassing
+      keep: [Outputs]
+      bypass: [Inputs, Weights]  # no data should be stored in dummy, it is just a transition buffer
