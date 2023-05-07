@@ -8,7 +8,7 @@ mapping:
     bypass: [Weights]  # weights are stored locally in the weight cache, not loaded from DRAM
   - target: DRAM
     type: temporal
-    factors: R=1 S=1 P=0 Q=6 N=0 M=43 C=86
+    factors: R=1 S=1 P=0 Q=3 N=0 M=43 C=86
     permutation: SRCQPMN
   # =======================================
   # Global Buffer Constraints
@@ -52,7 +52,7 @@ mapping:
     type: temporal
   - target: plcu_dummy_buffer
     type: spatial
-    factors: R=1 S=1 P=1 Q=5,2 N=1 C=1 M=1
+    factors: R=1 S=1 P=1 Q=5,3 N=1 C=1 M=1
     permutation: Q
     split: 1
   - target: plcu_dummy_buffer
