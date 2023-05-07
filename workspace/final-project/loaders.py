@@ -42,7 +42,6 @@ class ConfigRegistry:
     ALBIREO_ARCH               = ALBIREO_DIR / 'arch/system_albireo.yaml'
     ALBIREO_COMPONENTS_DIR     = ALBIREO_DIR / 'arch/components'
     ALBIREO_CONSTRAINTS        = ALBIREO_DIR / 'constraints/constraints.yaml'
-    ALBIREO_CONSTRAINTS_VGG    = ALBIREO_DIR / 'constraints/constraints_VGG.yaml'
     ALBIREO_MAPPER             = ALBIREO_DIR / 'mapper/mapper.yaml'
     ALBIREO_MAPPING_ALEXNET_L1 = ALBIREO_DIR / 'map/map_alexnet_layer1.yaml'
     ALBIREO_MAPPING_ALEXNET_L2 = ALBIREO_DIR / 'map/map_alexnet_layer2.yaml'
