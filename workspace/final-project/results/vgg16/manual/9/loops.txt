@@ -1,0 +1,480 @@
+Layer 0
+
+
+DRAM [ Inputs:153228 (153228) Outputs:3211264 (3211264) ] 
+---------------------------------------------------------
+| for Q in [0:45)
+
+shared_glb [ Weights:1728 (1728) Inputs:4746 (4746) Outputs:71680 (71680) ] 
+---------------------------------------------------------------------------
+|   for M in [0:8)
+|     for P in [0:224)
+
+dummy_buffer [ ] 
+----------------
+|       for Q in [0:1)
+|         for M in [0:9,1) (Spatial-X)
+
+weight_cache [ Weights:27 (27) ] 
+--------------------------------
+|           for Q in [0:1)
+|             for C in [0:3) (Spatial-X)
+
+plcu_dummy_buffer [ ] 
+---------------------
+|               for Q in [0:1)
+|                 for Q in [0:5,4) (Spatial-X)
+
+psumBuffer [ Outputs:1 (1) ] 
+----------------------------
+|                   for S in [0:3)
+|                     for R in [0:3)
+
+
+
+
+
+Layer 1
+
+
+DRAM [ Inputs:831744 (831744) Outputs:802816 (802816) ] 
+-------------------------------------------------------
+| for C in [0:22)
+|   for Q in [0:23)
+
+shared_glb [ Weights:1728 (1728) Inputs:2394 (2394) Outputs:35840 (35840) ] 
+---------------------------------------------------------------------------
+|     for M in [0:8)
+|       for P in [0:112)
+
+dummy_buffer [ ] 
+----------------
+|         for Q in [0:1)
+|           for M in [0:9,1) (Spatial-X)
+
+weight_cache [ Weights:27 (27) ] 
+--------------------------------
+|             for Q in [0:1)
+|               for C in [0:3,1) (Spatial-X)
+
+plcu_dummy_buffer [ ] 
+---------------------
+|                 for Q in [0:1)
+|                   for Q in [0:5,2) (Spatial-X)
+
+psumBuffer [ Outputs:1 (1) ] 
+----------------------------
+|                     for S in [0:3)
+|                       for R in [0:3)
+
+
+
+
+
+Layer 2
+
+
+DRAM [ Inputs:831744 (831744) Outputs:1605632 (1605632) ] 
+---------------------------------------------------------
+| for C in [0:22)
+|   for Q in [0:23)
+
+shared_glb [ Weights:3456 (3456) Inputs:2394 (2394) Outputs:71680 (71680) ] 
+---------------------------------------------------------------------------
+|     for M in [0:15)
+|       for P in [0:112)
+
+dummy_buffer [ ] 
+----------------
+|         for Q in [0:1)
+|           for M in [0:9,2) (Spatial-X)
+
+weight_cache [ Weights:27 (27) ] 
+--------------------------------
+|             for Q in [0:1)
+|               for C in [0:3,1) (Spatial-X)
+
+plcu_dummy_buffer [ ] 
+---------------------
+|                 for Q in [0:1)
+|                   for Q in [0:5,2) (Spatial-X)
+
+psumBuffer [ Outputs:1 (1) ] 
+----------------------------
+|                     for S in [0:3)
+|                       for R in [0:3)
+
+
+
+
+
+Layer 3
+
+
+DRAM [ Inputs:430592 (430592) Outputs:401408 (401408) ] 
+-------------------------------------------------------
+| for C in [0:43)
+|   for Q in [0:12)
+
+shared_glb [ Weights:3456 (3456) Inputs:1218 (1218) Outputs:35840 (35840) ] 
+---------------------------------------------------------------------------
+|     for M in [0:15)
+|       for P in [0:56)
+
+dummy_buffer [ ] 
+----------------
+|         for Q in [0:1)
+|           for M in [0:9,2) (Spatial-X)
+
+weight_cache [ Weights:27 (27) ] 
+--------------------------------
+|             for Q in [0:1)
+|               for C in [0:3,2) (Spatial-X)
+
+plcu_dummy_buffer [ ] 
+---------------------
+|                 for Q in [0:1)
+|                   for Q in [0:5,1) (Spatial-X)
+
+psumBuffer [ Outputs:1 (1) ] 
+----------------------------
+|                     for S in [0:3)
+|                       for R in [0:3)
+
+
+
+
+
+Layer 4
+
+
+DRAM [ Inputs:430592 (430592) Outputs:802816 (802816) ] 
+-------------------------------------------------------
+| for C in [0:43)
+|   for Q in [0:12)
+
+shared_glb [ Weights:6912 (6912) Inputs:1218 (1218) Outputs:71680 (71680) ] 
+---------------------------------------------------------------------------
+|     for M in [0:29)
+|       for P in [0:56)
+
+dummy_buffer [ ] 
+----------------
+|         for Q in [0:1)
+|           for M in [0:9,4) (Spatial-X)
+
+weight_cache [ Weights:27 (27) ] 
+--------------------------------
+|             for Q in [0:1)
+|               for C in [0:3,2) (Spatial-X)
+
+plcu_dummy_buffer [ ] 
+---------------------
+|                 for Q in [0:1)
+|                   for Q in [0:5,1) (Spatial-X)
+
+psumBuffer [ Outputs:1 (1) ] 
+----------------------------
+|                     for S in [0:3)
+|                       for R in [0:3)
+
+
+
+
+
+Layer 5
+
+
+DRAM [ Inputs:861184 (861184) Outputs:802816 (802816) ] 
+-------------------------------------------------------
+| for C in [0:86)
+|   for Q in [0:12)
+
+shared_glb [ Weights:6912 (6912) Inputs:1218 (1218) Outputs:71680 (71680) ] 
+---------------------------------------------------------------------------
+|     for M in [0:29)
+|       for P in [0:56)
+
+dummy_buffer [ ] 
+----------------
+|         for Q in [0:1)
+|           for M in [0:9,4) (Spatial-X)
+
+weight_cache [ Weights:27 (27) ] 
+--------------------------------
+|             for Q in [0:1)
+|               for C in [0:3,1) (Spatial-X)
+
+plcu_dummy_buffer [ ] 
+---------------------
+|                 for Q in [0:1)
+|                   for Q in [0:5,1) (Spatial-X)
+
+psumBuffer [ Outputs:1 (1) ] 
+----------------------------
+|                     for S in [0:3)
+|                       for R in [0:3)
+
+
+
+
+
+Layer 6
+
+
+DRAM [ Inputs:230400 (230400) Outputs:401408 (401408) ] 
+-------------------------------------------------------
+| for C in [0:86)
+|   for Q in [0:6)
+
+shared_glb [ Weights:13824 (13824) Inputs:630 (630) Outputs:71680 (71680) ] 
+---------------------------------------------------------------------------
+|     for M in [0:57)
+|       for P in [0:28)
+
+dummy_buffer [ ] 
+----------------
+|         for Q in [0:1)
+|           for M in [0:9,8) (Spatial-X)
+
+weight_cache [ Weights:27 (27) ] 
+--------------------------------
+|             for Q in [0:1)
+|               for C in [0:3,1) (Spatial-X)
+
+plcu_dummy_buffer [ ] 
+---------------------
+|                 for Q in [0:1)
+|                   for Q in [0:5,3) (Spatial-X)
+
+psumBuffer [ Outputs:1 (1) ] 
+----------------------------
+|                     for S in [0:3)
+|                       for R in [0:3)
+
+
+
+
+
+Layer 7
+
+
+DRAM [ Inputs:460800 (460800) Outputs:401408 (401408) ] 
+-------------------------------------------------------
+| for C in [0:171)
+|   for Q in [0:6)
+
+shared_glb [ Weights:13824 (13824) Inputs:630 (630) Outputs:71680 (71680) ] 
+---------------------------------------------------------------------------
+|     for M in [0:57)
+|       for P in [0:28)
+
+dummy_buffer [ ] 
+----------------
+|         for Q in [0:1)
+|           for M in [0:9,8) (Spatial-X)
+
+weight_cache [ Weights:27 (27) ] 
+--------------------------------
+|             for Q in [0:1)
+|               for C in [0:3,2) (Spatial-X)
+
+plcu_dummy_buffer [ ] 
+---------------------
+|                 for Q in [0:1)
+|                   for Q in [0:5,3) (Spatial-X)
+
+psumBuffer [ Outputs:1 (1) ] 
+----------------------------
+|                     for S in [0:3)
+|                       for R in [0:3)
+
+
+
+
+
+Layer 8
+
+
+DRAM [ Inputs:460800 (460800) Outputs:401408 (401408) ] 
+-------------------------------------------------------
+| for C in [0:171)
+|   for Q in [0:6)
+
+shared_glb [ Weights:13824 (13824) Inputs:630 (630) Outputs:71680 (71680) ] 
+---------------------------------------------------------------------------
+|     for M in [0:57)
+|       for P in [0:28)
+
+dummy_buffer [ ] 
+----------------
+|         for Q in [0:1)
+|           for M in [0:9,8) (Spatial-X)
+
+weight_cache [ Weights:27 (27) ] 
+--------------------------------
+|             for Q in [0:1)
+|               for C in [0:3,2) (Spatial-X)
+
+plcu_dummy_buffer [ ] 
+---------------------
+|                 for Q in [0:1)
+|                   for Q in [0:5,3) (Spatial-X)
+
+psumBuffer [ Outputs:1 (1) ] 
+----------------------------
+|                     for S in [0:3)
+|                       for R in [0:3)
+
+
+
+
+
+Layer 9
+
+
+DRAM [ Inputs:131072 (131072) Outputs:100352 (100352) ] 
+-------------------------------------------------------
+| for C in [0:171)
+|   for Q in [0:3)
+
+shared_glb [ Weights:13824 (13824) Inputs:336 (336) Outputs:35840 (35840) ] 
+---------------------------------------------------------------------------
+|     for M in [0:57)
+|       for P in [0:14)
+
+dummy_buffer [ ] 
+----------------
+|         for Q in [0:1)
+|           for M in [0:9,8) (Spatial-X)
+
+weight_cache [ Weights:27 (27) ] 
+--------------------------------
+|             for Q in [0:1)
+|               for C in [0:3,2) (Spatial-X)
+
+plcu_dummy_buffer [ ] 
+---------------------
+|                 for Q in [0:1)
+|                   for Q in [0:5,4) (Spatial-X)
+
+psumBuffer [ Outputs:1 (1) ] 
+----------------------------
+|                     for S in [0:3)
+|                       for R in [0:3)
+
+
+
+
+
+Layer 10
+
+
+DRAM [ Inputs:131072 (131072) Outputs:100352 (100352) ] 
+-------------------------------------------------------
+| for C in [0:171)
+|   for Q in [0:3)
+
+shared_glb [ Weights:13824 (13824) Inputs:336 (336) Outputs:35840 (35840) ] 
+---------------------------------------------------------------------------
+|     for M in [0:57)
+|       for P in [0:14)
+
+dummy_buffer [ ] 
+----------------
+|         for Q in [0:1)
+|           for M in [0:9,8) (Spatial-X)
+
+weight_cache [ Weights:27 (27) ] 
+--------------------------------
+|             for Q in [0:1)
+|               for C in [0:3,2) (Spatial-X)
+
+plcu_dummy_buffer [ ] 
+---------------------
+|                 for Q in [0:1)
+|                   for Q in [0:5,4) (Spatial-X)
+
+psumBuffer [ Outputs:1 (1) ] 
+----------------------------
+|                     for S in [0:3)
+|                       for R in [0:3)
+
+
+
+
+
+Layer 11
+
+
+DRAM [ Inputs:131072 (131072) Outputs:100352 (100352) ] 
+-------------------------------------------------------
+| for C in [0:171)
+|   for Q in [0:3)
+
+shared_glb [ Weights:13824 (13824) Inputs:336 (336) Outputs:35840 (35840) ] 
+---------------------------------------------------------------------------
+|     for M in [0:57)
+|       for P in [0:14)
+
+dummy_buffer [ ] 
+----------------
+|         for Q in [0:1)
+|           for M in [0:9,8) (Spatial-X)
+
+weight_cache [ Weights:27 (27) ] 
+--------------------------------
+|             for Q in [0:1)
+|               for C in [0:3,2) (Spatial-X)
+
+plcu_dummy_buffer [ ] 
+---------------------
+|                 for Q in [0:1)
+|                   for Q in [0:5,4) (Spatial-X)
+
+psumBuffer [ Outputs:1 (1) ] 
+----------------------------
+|                     for S in [0:3)
+|                       for R in [0:3)
+
+
+
+
+
+Layer 12
+
+
+DRAM [ Inputs:131072 (131072) Outputs:100352 (100352) ] 
+-------------------------------------------------------
+| for C in [0:171)
+|   for Q in [0:3)
+
+shared_glb [ Weights:13824 (13824) Inputs:336 (336) Outputs:35840 (35840) ] 
+---------------------------------------------------------------------------
+|     for M in [0:57)
+|       for P in [0:14)
+
+dummy_buffer [ ] 
+----------------
+|         for Q in [0:1)
+|           for M in [0:9,8) (Spatial-X)
+
+weight_cache [ Weights:27 (27) ] 
+--------------------------------
+|             for Q in [0:1)
+|               for C in [0:3,2) (Spatial-X)
+
+plcu_dummy_buffer [ ] 
+---------------------
+|                 for Q in [0:1)
+|                   for Q in [0:5,4) (Spatial-X)
+
+psumBuffer [ Outputs:1 (1) ] 
+----------------------------
+|                     for S in [0:3)
+|                       for R in [0:3)
+
+
+
+
+
