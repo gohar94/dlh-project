@@ -42,12 +42,27 @@ class ConfigRegistry:
     ALBIREO_ARCH               = ALBIREO_DIR / 'arch/system_albireo.yaml'
     ALBIREO_COMPONENTS_DIR     = ALBIREO_DIR / 'arch/components'
     ALBIREO_CONSTRAINTS        = ALBIREO_DIR / 'constraints/constraints.yaml'
+    ALBIREO_CONSTRAINTS_VGG    = ALBIREO_DIR / 'constraints/constraints_VGG.yaml'
     ALBIREO_MAPPER             = ALBIREO_DIR / 'mapper/mapper.yaml'
     ALBIREO_MAPPING_ALEXNET_L1 = ALBIREO_DIR / 'map/map_alexnet_layer1.yaml'
     ALBIREO_MAPPING_ALEXNET_L2 = ALBIREO_DIR / 'map/map_alexnet_layer2.yaml'
     ALBIREO_MAPPING_ALEXNET_L3 = ALBIREO_DIR / 'map/map_alexnet_layer3.yaml'
     ALBIREO_MAPPING_ALEXNET_L4 = ALBIREO_DIR / 'map/map_alexnet_layer4.yaml'
     ALBIREO_MAPPING_ALEXNET_L5 = ALBIREO_DIR / 'map/map_alexnet_layer5.yaml'
+
+    ALBIREO_MAPPING_VGG_L1 = ALBIREO_DIR / 'map/map_vgg_layer1.yaml'
+    ALBIREO_MAPPING_VGG_L2 = ALBIREO_DIR / 'map/map_vgg_layer2.yaml'
+    ALBIREO_MAPPING_VGG_L3 = ALBIREO_DIR / 'map/map_vgg_layer3.yaml'
+    ALBIREO_MAPPING_VGG_L4 = ALBIREO_DIR / 'map/map_vgg_layer4.yaml'
+    ALBIREO_MAPPING_VGG_L5 = ALBIREO_DIR / 'map/map_vgg_layer5.yaml'
+    ALBIREO_MAPPING_VGG_L6 = ALBIREO_DIR / 'map/map_vgg_layer6.yaml'
+    ALBIREO_MAPPING_VGG_L7 = ALBIREO_DIR / 'map/map_vgg_layer7.yaml'
+    ALBIREO_MAPPING_VGG_L8 = ALBIREO_DIR / 'map/map_vgg_layer8.yaml'
+    ALBIREO_MAPPING_VGG_L9 = ALBIREO_DIR / 'map/map_vgg_layer9.yaml'
+    ALBIREO_MAPPING_VGG_L10 = ALBIREO_DIR / 'map/map_vgg_layer10.yaml'
+    ALBIREO_MAPPING_VGG_L11 = ALBIREO_DIR / 'map/map_vgg_layer11.yaml'
+    ALBIREO_MAPPING_VGG_L12 = ALBIREO_DIR / 'map/map_vgg_layer12.yaml'
+    ALBIREO_MAPPING_VGG_L13 = ALBIREO_DIR / 'map/map_vgg_layer13.yaml'
     
     #################################
     # Problems
@@ -58,6 +73,21 @@ class ConfigRegistry:
     ALEXNET_LAYER3  = LAYER_SHAPES_DIR / 'AlexNet/AlexNet_layer3.yaml'
     ALEXNET_LAYER4  = LAYER_SHAPES_DIR / 'AlexNet/AlexNet_layer4.yaml'
     ALEXNET_LAYER5  = LAYER_SHAPES_DIR / 'AlexNet/AlexNet_layer5.yaml'
+
+    LAYER_SHAPES_DIR = Path('layer_shapes')
+    VGG_LAYER1  = LAYER_SHAPES_DIR / 'VGG03/VGG03_layer1.yaml'
+    VGG_LAYER2  = LAYER_SHAPES_DIR / 'VGG03/VGG03_layer2.yaml'
+    VGG_LAYER3  = LAYER_SHAPES_DIR / 'VGG03/VGG03_layer3.yaml'
+    VGG_LAYER4  = LAYER_SHAPES_DIR / 'VGG03/VGG03_layer4.yaml'
+    VGG_LAYER5  = LAYER_SHAPES_DIR / 'VGG03/VGG03_layer5.yaml'
+    VGG_LAYER6  = LAYER_SHAPES_DIR / 'VGG03/VGG03_layer6.yaml'
+    VGG_LAYER7  = LAYER_SHAPES_DIR / 'VGG03/VGG03_layer7.yaml'
+    VGG_LAYER8  = LAYER_SHAPES_DIR / 'VGG03/VGG03_layer8.yaml'
+    VGG_LAYER9  = LAYER_SHAPES_DIR / 'VGG03/VGG03_layer9.yaml'
+    VGG_LAYER10  = LAYER_SHAPES_DIR / 'VGG03/VGG03_layer10.yaml'
+    VGG_LAYER11  = LAYER_SHAPES_DIR / 'VGG03/VGG03_layer11.yaml'
+    VGG_LAYER12  = LAYER_SHAPES_DIR / 'VGG03/VGG03_layer12.yaml'
+    VGG_LAYER13  = LAYER_SHAPES_DIR / 'VGG03/VGG03_layer13.yaml'
 
     #################################
     # Debugging

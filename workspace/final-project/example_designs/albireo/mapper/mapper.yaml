@@ -3,5 +3,5 @@ mapper:
   live-status: False
   num-threads: 8
   timeout: 15000
-  victory-condition: 8000
+  victory-condition: 800
   diagnostics: False
