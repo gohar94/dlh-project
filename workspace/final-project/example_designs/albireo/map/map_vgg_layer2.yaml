@@ -15,7 +15,7 @@ mapping:
   # =======================================
   - target: shared_glb
     type: temporal
-    factors: R=1 S=1 P=0 Q=1 N=0 M=15 C=1
+    factors: R=1 S=1 P=0 Q=1 N=0 M=8 C=1
     permutation: SRCQPMN
   - target: shared_glb
     type: bypass
@@ -34,7 +34,7 @@ mapping:
   #   permutation: M
   - target: dummy_buffer
     type: spatial
-    factors: R=1 S=1 P=1 Q=1 N=1 C=1 M=9,2
+    factors: R=1 S=1 P=1 Q=1 N=1 C=1 M=9,1
     permutation: M
     split: 1
   - target: dummy_buffer
