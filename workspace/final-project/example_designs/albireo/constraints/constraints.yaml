@@ -12,8 +12,8 @@ mapspace:
     # =======================================
     - target: shared_glb
       type: bypassing
-      keep: [Inputs, Outputs]
-      bypass: [Weights]
+      keep: [Inputs, Outputs, Weights]
+      bypass: []
     # =======================================
     # Dummy Buffer Constraints
     # =======================================
