@@ -1,6 +1,76 @@
 import re 
 import pickle
 
+
+def get_numbers_from_summary_eyeriss(string):
+    keys = [
+        'GLOPs',
+        'Utilization', 
+        'Cycles', 
+        'Energy',
+        'EDP(J*cycle)', 
+        'Area',
+        'Computes',
+        'pJ/Compute mac',
+        'pJ/Compute psum_spad',
+        'pJ/Compute weights_spad',
+        'pJ/Compute ifmap_spad',
+        'pJ/Compute DummyBuffer',
+        'pJ/Compute shared_glb',
+        'pJ/Compute DRAM',
+        'pJ/Compute DRAM <==> shared_glb',
+        'pJ/Compute DummyBuffer <==> ifmap_spad',
+        'pJ/Compute ifmap_spad <==> weights_spad',
+        'pJ/Compute psum_spad <==> mac',
+        'pJ/Compute shared_glb <==> DummyBuffer',
+        'pJ/Compute weights_spad <==> psum_spad',
+        'pJ/Compute Total',
+    ]
+    
+    patterns = re.findall(r"[:=]\s*[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", string)
+    
+    numbers = [float(
+        re.search(r"[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", pattern).group()
+    ) for pattern in patterns]
+    
+    assert len(keys) == len(numbers)
+    
+    return dict(zip(keys, numbers))
+
+
+def get_numbers_from_summary_pim(string):
+    keys = [
+        'GLOPs',
+        'Utilization', 
+        'Cycles', 
+        'Energy',
+        'EDP(J*cycle)', 
+        'Area',
+        'Computes',
+        'pJ/Compute mac',
+        'pJ/Compute scratchpad',
+        'pJ/Compute dummy_buffer',
+        'pJ/Compute shared_glb',
+        'pJ/Compute DRAM',
+        'pJ/Compute A2D_NoC',
+        'pJ/Compute D2A_NoC',
+        'pJ/Compute DRAM <==> shared_glb',
+        'pJ/Compute dummy_buffer <==> scratchpad',
+        'pJ/Compute scratchpad <==> mac',
+        'pJ/Compute Total',
+    ]
+    
+    patterns = re.findall(r"[:=]\s*[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", string)
+    
+    numbers = [float(
+        re.search(r"[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", pattern).group()
+    ) for pattern in patterns]
+    
+    assert len(keys) == len(numbers)
+    
+    return dict(zip(keys, numbers))
+
+
 def get_numbers_from_summary(string):
     keys = [
         'GLOPs',
