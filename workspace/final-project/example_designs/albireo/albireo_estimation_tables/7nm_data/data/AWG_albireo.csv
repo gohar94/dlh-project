@@ -1,3 +1,3 @@
 technology,datawidth,action,energy,area,comment
-7nm,8,compute,0,9972.8,area in um^2; this is an energy-free component
-7nm,8,idle,0,9972.8,
+7nm,8,compute,0,9972800,area in um^2; this is an energy-free component
+7nm,8,idle,0,9972800,

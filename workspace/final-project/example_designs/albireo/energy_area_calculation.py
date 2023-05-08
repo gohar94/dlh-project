@@ -39,10 +39,10 @@ def prefix(x, dimension=1):
     return "%.3g %s" % (x * 10**(-l + mod), " kMGTPEZYyzafpnµm"[div])
 
 
-def area_milli_to_micro(x):
-    """Given an area in mm^2, convert it to um^2.
+def area_m_to_micro(x):
+    """Given an area in m^2, convert it to um^2.
     """
-    return x * 1000000
+    return x * 1000000000000
 
 
 def percent_to_decimal(x):
@@ -129,24 +129,24 @@ print(f"{'energy_per_ADC':<25} {prefix(energy_per_ADC):>10}J")
 print(f"{'energy_per_DAC':<25} {prefix(energy_per_DAC):>10}J")
 
 
-total_albireo_area    = 124.66 * MILLI
-mzm_area              = total_albireo_area * percent_to_decimal(3.7)
-dac_area              = total_albireo_area * percent_to_decimal(0.03)
-adc_area              = total_albireo_area * percent_to_decimal(0.4)
-mrr_area              = total_albireo_area * percent_to_decimal(0.8)
-awg_area              = total_albireo_area * percent_to_decimal(72)
-star_coupler_area     = total_albireo_area * percent_to_decimal(17)
+total_albireo_area_m2 = 124.66 * MILLI * MILLI
+mzm_area              = total_albireo_area_m2 * percent_to_decimal(3.7)
+dac_area              = total_albireo_area_m2 * percent_to_decimal(0.03)
+adc_area              = total_albireo_area_m2 * percent_to_decimal(0.4)
+mrr_area              = total_albireo_area_m2 * percent_to_decimal(0.8)
+awg_area              = total_albireo_area_m2 * percent_to_decimal(72)
+star_coupler_area     = total_albireo_area_m2 * percent_to_decimal(17)
 
 
 print()
 print("\nArea:")
-print("Total area in um^2: {:.4f}".format(area_milli_to_micro(total_albireo_area)))
-print("Total MZM area in um^2: {:.4f}".format(area_milli_to_micro(mzm_area)))
-print("Total DAC area in um^2: {:.4f}".format(area_milli_to_micro(dac_area)))
-print("Total ADC area in um^2: {:.4f}".format(area_milli_to_micro(adc_area)))
-print("Total MRR area in um^2: {:.4f}".format(area_milli_to_micro(mrr_area)))
-print("Total AWG area in um^2: {:.4f}".format(area_milli_to_micro(awg_area)))
-print("Total star coupler area in um^2: {:.4f}".format(area_milli_to_micro(star_coupler_area)))
+print("Total area in um^2: {:.4f}".format(area_m_to_micro(total_albireo_area_m2)))
+print("Total MZM area in um^2: {:.4f}".format(area_m_to_micro(mzm_area)))
+print("Total DAC area in um^2: {:.4f}".format(area_m_to_micro(dac_area)))
+print("Total ADC area in um^2: {:.4f}".format(area_m_to_micro(adc_area)))
+print("Total MRR area in um^2: {:.4f}".format(area_m_to_micro(mrr_area)))
+print("Total AWG area in um^2: {:.4f}".format(area_m_to_micro(awg_area)))
+print("Total star coupler area in um^2: {:.4f}".format(area_m_to_micro(star_coupler_area)))
 
 
 per_mzm_area          = mzm_area / num_mzm
@@ -158,10 +158,10 @@ per_star_coupler_area = star_coupler_area / num_star_coupler
 
 
 print("")
-print("Each MZM area in um^2: {:.4f}".format(area_milli_to_micro(per_mzm_area)))
-print("Each DAC area in um^2: {:.4f}".format(area_milli_to_micro(per_dac_area)))
-print("Each ADC area in um^2: {:.4f}".format(area_milli_to_micro(per_adc_area)))
-print("Each MRR area in um^2: {:.4f}".format(area_milli_to_micro(per_mrr_area)))
-print("Each AWG area in um^2: {:.4f}".format(area_milli_to_micro(per_awg_area)))
-print("Each star coupler area in um^2: {:.4f}".format(area_milli_to_micro(per_star_coupler_area)))
+print("Each MZM area in um^2: {:.4f}".format(area_m_to_micro(per_mzm_area)))
+print("Each DAC area in um^2: {:.4f}".format(area_m_to_micro(per_dac_area)))
+print("Each ADC area in um^2: {:.4f}".format(area_m_to_micro(per_adc_area)))
+print("Each MRR area in um^2: {:.4f}".format(area_m_to_micro(per_mrr_area)))
+print("Each AWG area in um^2: {:.4f}".format(area_m_to_micro(per_awg_area)))
+print("Each star coupler area in um^2: {:.4f}".format(area_m_to_micro(per_star_coupler_area)))
 print()
