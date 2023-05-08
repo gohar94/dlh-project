@@ -1,0 +1,182 @@
+Layer 0
+
+
+DRAM [ Weights:34848 (34848) Inputs:154587 (154587) Outputs:290400 (290400) ] 
+-----------------------------------------------------------------------------
+| for Q in [0:55)
+|   for C in [0:3)
+
+shared_glb [ Inputs:2497 (2497) Outputs:5280 (5280) ] 
+-----------------------------------------------------
+|     for P in [0:55)
+|       for M in [0:12) (Spatial-X)
+
+DummyBuffer [ ] 
+---------------
+|         for Q in [0:1)
+|           for S in [0:11) (Spatial-Y)
+
+ifmap_spad [ Inputs:11 (11) ] 
+-----------------------------
+|             for Q in [0:1)
+
+weights_spad [ Weights:88 (88) ] 
+--------------------------------
+|               for R in [0:11)
+
+psum_spad [ Outputs:8 (8) ] 
+---------------------------
+|                 for M in [0:8)
+
+
+
+
+
+Layer 1
+
+
+DRAM [ Weights:614400 (614400) Inputs:92256 (92256) Outputs:186624 (186624) ] 
+-----------------------------------------------------------------------------
+| for Q in [0:9)
+|   for C in [0:24)
+
+shared_glb [ Inputs:868 (868) Outputs:20736 (20736) ] 
+-----------------------------------------------------
+|     for M in [0:4)
+|       for P in [0:27)
+|         for M in [0:4) (Spatial-X)
+|           for Q in [0:3) (Spatial-X)
+
+DummyBuffer [ ] 
+---------------
+|             for Q in [0:1)
+|               for C in [0:2) (Spatial-Y)
+|                 for S in [0:5) (Spatial-Y)
+
+ifmap_spad [ Inputs:10 (10) ] 
+-----------------------------
+|                   for Q in [0:1)
+
+weights_spad [ Weights:160 (160) ] 
+----------------------------------
+|                     for R in [0:5)
+|                       for C in [0:2)
+
+psum_spad [ Outputs:16 (16) ] 
+-----------------------------
+|                         for M in [0:16)
+
+
+
+
+
+Layer 2
+
+
+DRAM [ Weights:884736 (884736) Inputs:57600 (57600) Outputs:64896 (64896) ] 
+---------------------------------------------------------------------------
+| for M in [0:2)
+|   for C in [0:16)
+
+shared_glb [ Inputs:3600 (3600) Outputs:32448 (32448) ] 
+-------------------------------------------------------
+|     for M in [0:12)
+|       for P in [0:13)
+|         for Q in [0:13) (Spatial-X)
+
+DummyBuffer [ ] 
+---------------
+|           for Q in [0:1)
+|             for C in [0:4) (Spatial-Y)
+|               for S in [0:3) (Spatial-Y)
+
+ifmap_spad [ Inputs:12 (12) ] 
+-----------------------------
+|                 for Q in [0:1)
+
+weights_spad [ Weights:192 (192) ] 
+----------------------------------
+|                   for R in [0:3)
+|                     for C in [0:4)
+
+psum_spad [ Outputs:16 (16) ] 
+-----------------------------
+|                       for M in [0:16)
+
+
+
+
+
+Layer 3
+
+
+DRAM [ Weights:1327104 (1327104) Inputs:86400 (86400) Outputs:64896 (64896) ] 
+-----------------------------------------------------------------------------
+| for M in [0:3)
+|   for C in [0:24)
+
+shared_glb [ Inputs:3600 (3600) Outputs:21632 (21632) ] 
+-------------------------------------------------------
+|     for M in [0:8)
+|       for P in [0:13)
+|         for Q in [0:13) (Spatial-X)
+
+DummyBuffer [ ] 
+---------------
+|           for Q in [0:1)
+|             for C in [0:4) (Spatial-Y)
+|               for S in [0:3) (Spatial-Y)
+
+ifmap_spad [ Inputs:12 (12) ] 
+-----------------------------
+|                 for Q in [0:1)
+
+weights_spad [ Weights:192 (192) ] 
+----------------------------------
+|                   for R in [0:3)
+|                     for C in [0:4)
+
+psum_spad [ Outputs:16 (16) ] 
+-----------------------------
+|                       for M in [0:16)
+
+
+
+
+
+Layer 4
+
+
+DRAM [ Weights:884736 (884736) Inputs:86400 (86400) Outputs:43264 (43264) ] 
+---------------------------------------------------------------------------
+| for C in [0:24)
+
+shared_glb [ Inputs:3600 (3600) Outputs:43264 (43264) ] 
+-------------------------------------------------------
+|   for M in [0:16)
+|     for P in [0:13)
+|       for Q in [0:13) (Spatial-X)
+
+DummyBuffer [ ] 
+---------------
+|         for Q in [0:1)
+|           for C in [0:4) (Spatial-Y)
+|             for S in [0:3) (Spatial-Y)
+
+ifmap_spad [ Inputs:12 (12) ] 
+-----------------------------
+|               for Q in [0:1)
+
+weights_spad [ Weights:192 (192) ] 
+----------------------------------
+|                 for R in [0:3)
+|                   for C in [0:4)
+
+psum_spad [ Outputs:16 (16) ] 
+-----------------------------
+|                     for M in [0:16)
+
+
+
+
+
