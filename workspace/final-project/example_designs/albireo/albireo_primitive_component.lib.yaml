@@ -36,3 +36,19 @@ classes:
     actions:
       - name: compute
       - name: idle
+  - name: StarCoupler_albireo
+    attributes:
+      technology: 7nm
+      latency: 1ns
+    actions:
+      - name: compute
+      - name: idle
+  - name: AWG_albireo
+    attributes:
+      technology: 7nm
+      latency: 1ns
+      input_waveguides: 63
+      output_split: 3
+    actions:
+      - name: compute
+      - name: idle
