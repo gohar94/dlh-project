@@ -2,6 +2,6 @@ mapper:
   optimization-metric: [ delay, energy ]
   live-status: False
   num-threads: 8
-  timeout: 15000000
-  victory-condition: 4000
+  timeout: 150000
+  victory-condition: 800
   diagnostics: False
