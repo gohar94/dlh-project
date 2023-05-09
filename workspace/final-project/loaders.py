@@ -40,6 +40,7 @@ class ConfigRegistry:
     #################################
     ALBIREO_DIR                = Path('example_designs/albireo')
     ALBIREO_ARCH               = ALBIREO_DIR / 'arch/system_albireo.yaml'
+    ALBIREO_ARCH_MEM_8         = ALBIREO_DIR / 'arch/system_albireo_mem_8.yaml'
     ALBIREO_COMPONENTS_DIR     = ALBIREO_DIR / 'arch/components'
     ALBIREO_CONSTRAINTS        = ALBIREO_DIR / 'constraints/constraints.yaml'
     ALBIREO_MAPPER             = ALBIREO_DIR / 'mapper/mapper.yaml'

@@ -37,3 +37,5 @@
 **/profiles
 
 venv/
+
+**/*.DS_Store
