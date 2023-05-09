@@ -88,6 +88,10 @@ architecture:
                     latency: 0.2ns
                     meshX: 3
                     meshY: 1
+                - name: star_couplers[0..2]
+                  class: StarCoupler_albireo
+                - name: awg
+                  class: AWG_albireo
               subtree:
                 - name: plcu[0..2]
                   attributes:
