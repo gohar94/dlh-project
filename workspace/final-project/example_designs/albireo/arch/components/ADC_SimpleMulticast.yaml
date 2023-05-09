@@ -10,7 +10,7 @@ compound_components:
         ADC_datawidth: 8
         n_DAC_cycles: 1
       subcomponents:
-        - name: A2D_converter[0..8]
+        - name: A2D_converter[0..26]
           class: A2D_conversion_system
           attributes:
             technology: 7nm
@@ -23,6 +23,6 @@ compound_components:
           arguments:
             num_destinations: 1..1 # digital partial sums are only sent to global buffer
           subcomponents:
-            - name: A2D_converter[0..8]
+            - name: A2D_converter[0..26]
               actions:
                 - name: convert

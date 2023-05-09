@@ -4,7 +4,7 @@ compound_components:
   - name: smartbuffer_SRAM
     attributes:
       technology: 7nm
-      latency: 0.2ns
+      latency: 1ns
       memory_depth: 12
       memory_width: 16
       n_rdwr_ports: 2

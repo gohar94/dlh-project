@@ -4,7 +4,7 @@ compound_components:
     - name: D2A_conversion_system
       attributes:
         technology: 7nm
-        latency: 0.2ns
+        latency: 1ns
         datawidth: 8
         DAC_datawidth: 8
         nDACs: 1
@@ -15,7 +15,7 @@ compound_components:
           class: DAC_albireo
           attributes:
             technology: 7nm
-            latency: 0.2ns
+            latency: 1ns
             datawidth: 8
       actions:
         - name: convert

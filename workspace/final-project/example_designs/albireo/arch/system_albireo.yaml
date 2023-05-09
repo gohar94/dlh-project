@@ -51,7 +51,7 @@ architecture:
                 datawidth: 8
                 DAC_datawidth: 8
                 n_DAC_cycles: datawidth/DAC_datawidth
-                n_PLCG_cols: 9
+                n_PLCG_cols: 27
                 n_PLCG_rows: 1
                 action_name: transfer
                 per_datatype_ERT: True
@@ -64,15 +64,15 @@ architecture:
                 datawidth: 8
                 ADC_datawidth: 8
                 n_DAC_cycles: 1
-                n_PE_cols: 9
+                n_PE_cols: 27
                 n_PE_rows: 1
                 action_name: transfer
                 per_datatype_ERT: True
                 multicast_factor_argument: num_destinations
           subtree:
-            - name: plcg[0..8]
+            - name: plcg[0..26]
               attributes:
-                meshX: 9
+                meshX: 27
                 meshY: 1
               local:
                 - name: weight_cache
@@ -86,7 +86,7 @@ architecture:
                     read_bandwidth: 16
                     write_bandwidth: 16
                     latency: 0.2ns
-                    meshX: 9
+                    meshX: 27
                     meshY: 1
                 - name: star_couplers[0..2]
                   class: StarCoupler_albireo
@@ -95,7 +95,7 @@ architecture:
               subtree:
                 - name: plcu[0..2]
                   attributes:
-                    meshX: 27
+                    meshX: 81
                     meshY: 1
                   local:
                     - name: plcu_dummy_buffer
@@ -105,7 +105,7 @@ architecture:
                         latency: 0.2ns
                         depth: 0
                         width: 16
-                        meshX: 27
+                        meshX: 81
                         meshY: 1
                     - name: psumBuffer[0..4]
                       class: regfile
@@ -115,7 +115,7 @@ architecture:
                         width: 16
                         depth: 1
                         datawidth: 16
-                        meshX: 135
+                        meshX: 405
                         meshY: 1
                     # Note:
                     # Each OMAC here is a *column* of the PLCU grid of 9 * 2 MRRs.
@@ -128,5 +128,5 @@ architecture:
                         datawidth: 8
                         plcu_datawidth: 8
                         nCycles: datawidth/plcu_datawidth
-                        meshX: 135
+                        meshX: 405
                         meshY: 1
