@@ -11,7 +11,7 @@ compound_components:
         technology: 7nm
         datawidth: 8
         plcu_compute_datawidth: 8
-        latency: 1ns
+        latency: 0.2ns
         nCycles: datawidth/plcu_compute_datawidth
       subcomponents:
         # Note:
@@ -21,7 +21,7 @@ compound_components:
           attributes:
             technology: technology
             datawidth: 8
-            latency: 1ns
+            latency: 0.2ns
         # Note:
         # 2 MZMs.
         - name: mzms[0..1]
@@ -29,7 +29,7 @@ compound_components:
           attributes:
             technology: technology
             datawidth: 8
-            latency: 1ns
+            latency: 0.2ns
       actions:
         - name: compute
           subcomponents:

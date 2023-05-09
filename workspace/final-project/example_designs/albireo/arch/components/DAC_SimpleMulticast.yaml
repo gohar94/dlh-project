@@ -4,7 +4,7 @@ compound_components:
     - name: DAC_SimpleMulticast
       attributes:
         technology: 7nm
-        latency: 1ns
+        latency: 0.2ns
         datawidth: 8
         DAC_datawidth: 8
         num_converts: 1
@@ -13,7 +13,7 @@ compound_components:
           class: D2A_conversion_system
           attributes:
             technology: 7nm
-            latency: 1ns
+            latency: 0.2ns
             datawidth: 8
             DAC_datawidth: 8
       actions:

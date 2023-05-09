@@ -4,7 +4,7 @@ compound_components:
     - name: SRAM_storage
       attributes:
         technology: 7nm
-        latency: 1ns
+        latency: 0.2ns
         depth: 1024
         width: 16
         datawidth: 16
