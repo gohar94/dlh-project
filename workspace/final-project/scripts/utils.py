@@ -1,14 +1,14 @@
-import re 
+import re
 import pickle
 
 
 def get_numbers_from_summary_eyeriss(string):
     keys = [
         'GLOPs',
-        'Utilization', 
+        'Utilization',
         'Cycles', 
         'Energy',
-        'EDP(J*cycle)', 
+        'EDP(J*cycle)',
         'Area',
         'Computes',
         'pJ/Compute mac',
@@ -32,6 +32,7 @@ def get_numbers_from_summary_eyeriss(string):
     numbers = [float(
         re.search(r"[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", pattern).group()
     ) for pattern in patterns]
+   
     
     assert len(keys) == len(numbers)
     
@@ -102,7 +103,7 @@ def get_numbers_from_summary(string):
     numbers = [float(
         re.search(r"[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", pattern).group()
     ) for pattern in patterns]
-    
+        
     assert len(keys) == len(numbers)
     
     return dict(zip(keys, numbers))
