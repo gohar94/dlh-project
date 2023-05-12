@@ -1,3 +1,0 @@
-technology,type,datawidth,action,energy,area,comment
-7nm,SAR,8,convert,0.0224,55404,energy in pJ;  area in um^2
-7nm,SAR,8,idle,0,55404,

@@ -1,6 +1,0 @@
-mapping:
-  # mapping for the DRAM
-  - target: DRAM
-    type: temporal
-    factors: R=1 S=1 P=1 Q=1 N=1 M=1 C=1
-    permutation: RSPQCMN
